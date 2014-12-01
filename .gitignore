@@ -26,3 +26,27 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# Ember
+.idea
+*.sock
+*.rdb
+test/incomplete
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+# client/dist
+tmp
+
+# dependencies
+node_modules
+bower_components
+
+# misc
+.sass-cache
+connect.lock
+coverage/*
+libpeerconnection.log
+npm-debug.log
+testem.log
