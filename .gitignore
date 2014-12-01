@@ -32,12 +32,22 @@ node_modules
 *.sock
 *.rdb
 test/incomplete
+lib/client/tmp
 
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+lib/client/node_modules
+lib/client/bower_components
+
+lib/client/.sass-cache
+lib/client/connect.lock
+lib/client/coverage/*
+lib/client/libpeerconnection.log
+lib/client/npm-debug.log
+lib/client/testem.log
+
 
 # compiled output
 # client/dist
-tmp
+lib/client/tmp
 
 # dependencies
 node_modules
@@ -50,3 +60,5 @@ coverage/*
 libpeerconnection.log
 npm-debug.log
 testem.log
+
+

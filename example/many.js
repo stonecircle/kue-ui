@@ -1,5 +1,6 @@
 var kue = require('kue')
-    , express = require('express');
+    , express = require('express')
+    , ui = require('../lib/kue-ui');
 
 // create our job queue
 
@@ -40,9 +41,9 @@ jobs.process('email', 10, function (job, done) {
 });
 
 // start the UI
-
+var client = ui.app;
 var app = express();
-app.use('/kue', kue.app);
+app.use(client);
 app.listen(3000);
 
 console.log('UI started on port 3000');
