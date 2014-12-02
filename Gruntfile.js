@@ -2,14 +2,19 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
-        html2jade: {
+        shell: {
             options: {
-                // Task-specific options go here.
+                stderr: true
             },
+            target: {
+                command: 'cd lib/client && ember build --environment production'
+            }
+        },
+
+        html2jade: {
             your_target: {
                 src: 'lib/client/dist/index.html',
-                dest: 'lib/client/dist/index.jade'
-                // Target-specific file lists and/or options go here.
+                dest: 'lib/client/tmp/index.jade'
             },
         },
 
@@ -17,12 +22,15 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     patterns: [{
-                        match: /kue/g,
+                        match: /BASE_URL/g,
                         replacement: '#{baseURL}'
                     }]
                 },
-                files: [{src: ['lib/client/dist/index.jade'], dest: 'lib/client/tmp/'}]
+                files: [{expand: true, flatten: true,src: ['lib/client/tmp/index.jade'], dest: 'lib/client/dist/'}]
             }
         }
     });
+
+    grunt.registerTask('build', ['shell', 'html2jade', 'replace']);
+
 };

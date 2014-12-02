@@ -42,7 +42,7 @@ jobs.process('email', 10, function (job, done) {
 
 // start the UI
 ui.setup({
-    baseURL: '/kue'
+    baseURL: 'kue'
 });
 var client = ui.app;
 var app = express();
