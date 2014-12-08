@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         html2jade: {
             your_target: {
                 src: 'lib/client/dist/index.html',
-                dest: 'lib/client/tmp/index.jade'
+                dest: 'lib/client/tmp/build.jade'
             },
         },
 
@@ -24,9 +24,13 @@ module.exports = function(grunt) {
                     patterns: [{
                         match: /BASE_URL/g,
                         replacement: '#{baseURL}'
+                    },
+                    {
+                        match: /API_URL/g,
+                        replacement: '#{apiURL}'
                     }]
                 },
-                files: [{expand: true, flatten: true,src: ['lib/client/tmp/index.jade'], dest: 'lib/client/dist/'}]
+                files: [{expand: true, flatten: true,src: ['lib/client/tmp/build.jade'], dest: 'lib/client/dist/'}]
             }
         }
     });
