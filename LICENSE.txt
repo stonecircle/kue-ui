@@ -1,4 +1,4 @@
-Copyright (c) 2014 Arnaud Benard
+Copyright (c) 2014 StreetHub
 
 MIT License
 

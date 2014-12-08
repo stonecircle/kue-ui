@@ -1,4 +1,4 @@
-# Kue ui
+# kue ui
 ## Introduction
 Job management client for [kue](https://github.com/LearnBoost/kue/)
 
@@ -33,6 +33,9 @@ You can publish the application with any backend by serving the main index file 
 * baseURL: namespace of the application (in previous example: `/kue`),
 * apiURL: kue's JSON api (in previous example: `/api`)
 
+
+### License
+`kue-ui` is released under the MIT license. See LICENSE.txt for the complete text.
 
 ### Contributors
 
