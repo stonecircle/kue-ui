@@ -28,10 +28,44 @@ app.listen(3000);
 ```
 
 ### Standalone app
-You can publish the application with any backend by serving the main index file ( `require('kue-ui').index`). The client is build with Ember and the index file needs to be served with jade. You can use the following locals:
+You can publish the application with any backend by serving the main index file. The application is built with Ember and only has one `.jade` file.
+```javascript
+var template = require('kue-ui').index
+// -> absolute path to lib/client/dist/build.jade
+```
+
+The index file needs to be compiled with jade. You have to define the following locals:
 
 * baseURL: namespace of the application (in previous example: `/kue`),
 * apiURL: kue's JSON api (in previous example: `/api`)
+
+
+
+## Development
+
+An example is provided in `example/many.js`. Run it alongside redis (`redis-server`)
+ 
+    $ node example/many.js
+    
+The app is now accessible on `localhost:3000/kue/`.
+
+You can modify the app in `lib/client/app` and build it with `grunt build`.
+    
+### Errors
+
+
+- Forgot to run redis-server
+```
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED```
+
+- Stats route not implemented yet on kue
+```
+GET http://localhost:3000/api/jobs/video%20conversion/inactive/stats 404 (Not Found)
+```
+
 
 
 ### License
