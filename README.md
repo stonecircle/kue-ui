@@ -64,9 +64,11 @@ You can modify the app in `lib/client/app` and build it with `grunt build`.
 events.js:72
         throw er; // Unhandled 'error' event
               ^
-Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED```
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
+```
 
 - Stats route not implemented yet on kue
+
 ```
 GET http://localhost:3000/api/jobs/video%20conversion/inactive/stats 404 (Not Found)
 ```
