@@ -1,6 +1,11 @@
 # kue ui
 ## Introduction
-Job management client for [kue](https://github.com/LearnBoost/kue/)
+Job management client for [kue](https://github.com/LearnBoost/kue/) 
+
+## Screenshots
+
+* [Screenshot 1](https://cloud.githubusercontent.com/assets/1458008/5229932/76dd0e70-7716-11e4-9551-e87ce799d8dc.png)
+* [Screenshot 2](https://cloud.githubusercontent.com/assets/1458008/5229934/7fdf1c84-7716-11e4-8fa3-3d9f3dc947c7.png)
 
 ## Installation 
 
