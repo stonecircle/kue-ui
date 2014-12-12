@@ -65,3 +65,8 @@
 .stats-panel .field:nth-child(odd) {background: #F8F8F8}
 .stats-panel .field:nth-child(even) {background: white}
 .stats-panel .field:hover { background: #ededed;}
+
+/* input */
+.input-search {margin: 10px 0px; text-align: center;}
+.input{ padding: 10px; border: none; border-bottom: solid 2px #c9c9c9; -webkit-transition: border 0.3s; -moz-transition: border 0.3s; -o-transition: border 0.3s; transition: border 0.3s;}
+.input:focus{ border-bottom: solid 2px #969696; outline: none; }

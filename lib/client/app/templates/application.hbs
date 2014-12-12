@@ -1,6 +1,9 @@
 <div class="container">
   <div class="menu">
     <div class="logo">{{#link-to "jobs.index"}} kue {{/link-to}}</div>
+    <div class="input-search">
+      {{input value=jobId placeholder="id" class="input" action="goToJobRoute" on="enter"}}
+    </div>
     {{menu-tabs stats=stats breakdowns=breakdowns stateParam=state typeParam=type action="goToTypeRoute"}}
   </div>
 {{!--   <div class="main">
