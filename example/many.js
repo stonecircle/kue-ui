@@ -41,13 +41,13 @@ jobs.process('email', 10, function (job, done) {
 });
 
 // start the UI
-ui.setup({ 
+ui.setup({
     apiURL: '/api'
 });
 
 var app = express();
 app.use('/api', kue.app);
-app.use('/kue', ui.app);
+app.use('/', ui.app);
 
 app.listen(3000);
 console.log('UI started on port 3000');

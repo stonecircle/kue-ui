@@ -21,8 +21,9 @@ module.exports = function(grunt) {
         replace: {
             dist: {
                 options: {
-                    patterns: [{
-                        match: /BASE_URL/g,
+                    patterns: [
+                    {
+                        match: /\/BASE_URL/g,
                         replacement: '#{baseURL}'
                     },
                     {
