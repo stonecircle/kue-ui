@@ -1,7 +1,7 @@
 /* utilities */
 .hide {display: none!important;}
 .show {display: block!important;}
-
+.destroyed {background: black; color: black;}
 /* main */
 .jobs {width:100%; }
 
@@ -76,3 +76,4 @@
 
 /*other*/
 #json .jsonview { font-size: 1em; margin-left: 10px; margin-top: 10px;}
+

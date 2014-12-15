@@ -15,10 +15,6 @@
         </div>
     </div>
     {{/if}}
-    {{#if job.isDestroyed}}
-        Job deleted.
-      {{else}}
-        <button class="btn-remove" {{action "removeJob" job}}>Delete</button>
-    {{/if}}
+    <button class="btn-remove" {{action "removeJob" job}}>Delete</button>
 </div>
 
