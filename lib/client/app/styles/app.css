@@ -12,7 +12,7 @@
 .route-jobs-index {padding: 20px;}
 
 /* Menu */
-.menu { position: fixed; width: 250px; height: 100%; background: #262626;}
+.menu { position: fixed; width: 250px; height: 100%; background: #262626; overflow: scroll; overflow-x: hidden;}
 .menu .logo { height: 75px;line-height: 75px; text-align: center;}
 .menu .logo a { font-family: Montserrat-Regular; font-size: 24px; color: white; text-decoration: none;}
 .menu-list a.item, .menu-list a.sub-item {
