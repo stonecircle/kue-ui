@@ -1,6 +1,6 @@
 # kue ui
 ## Introduction
-Job management client for [kue](https://github.com/LearnBoost/kue/)(Version `>=0.8.10`)
+Job management client for [kue](https://github.com/LearnBoost/kue/) (Version `>=0.8.10`)
 
 ## Screenshots
 
