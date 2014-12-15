@@ -1,6 +1,6 @@
 # kue ui
 ## Introduction
-Job management client for [kue](https://github.com/LearnBoost/kue/) 
+Job management client for [kue](https://github.com/LearnBoost/kue/)(Version `>=0.8.10`)
 
 ## Screenshots
 
@@ -67,7 +67,7 @@ events.js:72
 Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
 ```
 
-- Stats route not implemented yet on kue
+- Stats route not implemented yet on kue. Update kue to `>=0.8.10`
 
 ```
 GET http://localhost:3000/api/jobs/video%20conversion/inactive/stats 404 (Not Found)
