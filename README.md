@@ -7,7 +7,7 @@ Job management client for [kue](https://github.com/LearnBoost/kue/) (Version `>=
 * [Screenshot 1](https://cloud.githubusercontent.com/assets/1458008/5229932/76dd0e70-7716-11e4-9551-e87ce799d8dc.png)
 * [Screenshot 2](https://cloud.githubusercontent.com/assets/1458008/5229934/7fdf1c84-7716-11e4-8fa3-3d9f3dc947c7.png)
 
-## Installation 
+## Installation
 
     $ npm install kue-ui
 
@@ -20,8 +20,9 @@ var express = require('express')
 var ui = require('kue-ui');
 var app = express();
 
-ui.setup({ 
+ui.setup({
     apiURL: '/api' // IMPORTANT: specify the api url
+    baseURL: '/kue' // IMPORTANT: specify the base url
 });
 
 // Mount kue JSON api
@@ -49,13 +50,13 @@ The index file needs to be compiled with jade. You have to define the following 
 ## Development
 
 An example is provided in `example/many.js`. Run it alongside redis (`redis-server`)
- 
+
     $ node example/many.js
-    
+
 The app is now accessible on `localhost:3000/kue/`.
 
 You can modify the app in `lib/client/app` and build it with `grunt build`.
-    
+
 ### Errors
 
 

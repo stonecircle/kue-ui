@@ -42,12 +42,13 @@ jobs.process('email', 10, function (job, done) {
 
 // start the UI
 ui.setup({
-    apiURL: '/api'
+    apiURL: '/api',
+    baseURL: '/test'
 });
 
 var app = express();
 app.use('/api', kue.app);
-app.use('/', ui.app);
+app.use('/test', ui.app);
 
 app.listen(3000);
 console.log('UI started on port 3000');
