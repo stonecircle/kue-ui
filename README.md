@@ -21,7 +21,7 @@ var ui = require('kue-ui');
 var app = express();
 
 ui.setup({
-    apiURL: '/api' // IMPORTANT: specify the api url
+    apiURL: '/api', // IMPORTANT: specify the api url
     baseURL: '/kue' // IMPORTANT: specify the base url
 });
 
