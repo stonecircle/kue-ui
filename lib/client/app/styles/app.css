@@ -1,7 +1,7 @@
 /* utilities */
 .hide {display: none!important;}
 .show {display: block!important;}
-
+.destroyed {background: black; color: black;}
 /* main */
 .jobs {width:100%; }
 
@@ -70,3 +70,13 @@
 .input-search {margin: 10px 0px; text-align: center;}
 .input{ padding: 10px; border: none; border-bottom: solid 2px #c9c9c9; -webkit-transition: border 0.3s; -moz-transition: border 0.3s; -o-transition: border 0.3s; transition: border 0.3s;}
 .input:focus{ border-bottom: solid 2px #969696; outline: none; }
+
+/* buttons */
+.btn-remove { margin-left: 42px; width: 300px; height: 50px; background: rgb(229, 108, 108); border: 0; text-transform: uppercase; font-size: 13px; color: white; font-family: 'Open Sans';  border: none; border-bottom: solid 2px #C04A4A;}
+
+/*other*/
+#json .jsonview { font-size: 1em; margin-left: 10px; margin-top: 10px;}
+
+/* alert */
+.ember-notify-cn { top: 0px!important;}
+.alert{ font-family: 'Open Sans', sans-serif; font-size: 14px; }

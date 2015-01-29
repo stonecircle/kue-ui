@@ -3,7 +3,7 @@
 
   <div class="panel-right">
     {{#if selectedJob}}
-      {{job-detail job=selectedJob action="goToJob"}}
+      {{job-detail job=selectedJob action="goToJob" removeAction="removeJob"}}
     {{else}}
     {{/if}}
   </div>

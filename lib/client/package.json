@@ -29,6 +29,7 @@
     "ember-cli-qunit": "0.1.0",
     "express": "^4.8.5",
     "glob": "^4.0.5",
-    "ember-cli-esnext": "^0.1.1"
+    "ember-cli-esnext": "^0.1.1",
+    "ember-notify": "^3.0.14"
   }
 }
