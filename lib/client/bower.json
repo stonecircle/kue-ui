@@ -15,6 +15,7 @@
     "qunit": "~1.15.0",
     "moment": "~2.8.4",
     "lodash": "~2.4.1",
-    "jquery-jsonview": "~1.2.0"
+    "jquery-jsonview": "~1.2.0",
+    "fastclick": "~1.0.6"
   }
 }

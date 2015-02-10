@@ -30,6 +30,8 @@
     "express": "^4.8.5",
     "glob": "^4.0.5",
     "ember-cli-esnext": "^0.1.1",
-    "ember-notify": "^3.0.14"
+    "ember-notify": "^3.0.14",
+    "ember-cli-cordova": "0.0.15",
+    "ember-cli-fastclick": "^1.0.3"
   }
 }
