@@ -33,6 +33,8 @@ app.use('/kue', ui.app);
 app.listen(3000);
 ```
 
+Note that with the above configuration you can still access the built-in Kue UI at /api/active in the browser.
+
 ### Standalone app
 You can publish the application with any backend by serving the main index file. The application is built with Ember and only has one `.jade` file.
 ```javascript
