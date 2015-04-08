@@ -15,14 +15,15 @@ Job management client for [kue](https://github.com/LearnBoost/kue/) (Version `>=
 ### Mount with express and kue
 
 ```javascript
-var kue = require('kue')
-var express = require('express')
+var kue = require('kue');
+var express = require('express');
 var ui = require('kue-ui');
 var app = express();
 
 ui.setup({
     apiURL: '/api', // IMPORTANT: specify the api url
-    baseURL: '/kue' // IMPORTANT: specify the base url
+    baseURL: '/kue', // IMPORTANT: specify the base url
+    updateInterval: 5000 // Optional: Fetches new data every 5000 ms
 });
 
 // Mount kue JSON api
@@ -46,6 +47,7 @@ The index file needs to be compiled with jade. You have to define the following 
 
 * baseURL: namespace of the application (in previous example: `/kue`),
 * apiURL: kue's JSON api (in previous example: `/api`)
+* [optional] updateInterval: Time between each refresh of the app (in previous example: 5000)
 
 
 

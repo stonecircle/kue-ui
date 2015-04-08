@@ -29,6 +29,10 @@ module.exports = function(grunt) {
                     {
                         match: /API_URL/g,
                         replacement: '#{apiURL}'
+                    },
+                    {
+                        match: /UPDATE_INTERVAL/g,
+                        replacement: '#{updateInterval}'
                     }]
                 },
                 files: [{expand: true, flatten: true,src: ['lib/client/tmp/build.jade'], dest: 'lib/client/dist/'}]
