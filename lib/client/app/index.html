@@ -12,11 +12,15 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/client.css">
+
+    {{content-for 'head-footer'}}
   </head>
   <body>
     {{content-for 'body'}}
 
     <script src="assets/vendor.js"></script>
     <script src="assets/client.js"></script>
+
+    {{content-for 'body-footer'}}
   </body>
 </html>

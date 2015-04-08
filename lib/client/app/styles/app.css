@@ -36,6 +36,7 @@
 .heading{display:table-row;text-align: center;}
 .table-row{display:table-row;text-align: center;}
 .col{display:table-cell;}
+.col-id {cursor: pointer;}
 .job, .jobs .heading{
     font-family: 'Open Sans', sans-serif; padding: 0px 10px; font-size: 12px;
     height: 40px; padding-left: 10px; line-height: 40px;

@@ -1,5 +1,5 @@
 <div class="route route-jobs-state">
-  {{jobs-table jobs=model selectedJob=selectedJob}}
+  {{jobs-table jobs=model selectedJob=selectedJob order=order orderAction="updateOrder"}}
 
   <div class="panel-right">
     {{#if selectedJob}}

@@ -1,6 +1,6 @@
 <div class="route route-jobs-type">
   {{#jobs-filter type=type selectedState=state page=page sort=sort}}
-    {{jobs-table jobs=model selectedJob=selectedJob}}
+    {{jobs-table jobs=model selectedJob=selectedJob order=order orderAction="updateOrder"}}
   {{/jobs-filter}}
   <div class="panel-right">
     {{#if selectedJob}}

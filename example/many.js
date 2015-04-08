@@ -1,6 +1,7 @@
-var kue = require('kue')
-    , express = require('express')
-    , ui = require('../lib/kue-ui');
+var kue = require('kue');
+var express = require('express');
+var ui = require('../lib/kue-ui');
+var cors = require('cors');
 
 // create our job queue
 
@@ -41,14 +42,15 @@ jobs.process('email', 10, function (job, done) {
 });
 
 // start the UI
-ui.setup({
-    apiURL: '/api',
-    baseURL: '/test'
-});
+// ui.setup({
+//     apiURL: '/api',
+//     baseURL: '/test'
+// });
 
 var app = express();
+app.use(cors());
 app.use('/api', kue.app);
-app.use('/test', ui.app);
+// app.use('/test', ui.app);
 
 app.listen(3000);
 console.log('UI started on port 3000');

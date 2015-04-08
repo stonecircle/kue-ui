@@ -21,7 +21,6 @@
     <br>
     <div class="stats-panel">
         <div class="title">Breakdown</div>
-        {{log breakdowns}}
         {{#each stat in breakdowns}}
             <div class="field">
             {{#link-to 'jobs.type' stat.type (query-params state=stat.state)}}
