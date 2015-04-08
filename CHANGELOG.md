@@ -1,3 +1,8 @@
+## 1.1.0 (2015-04-8)
+- Cleaned up the design
+- Added refresh by interval
+- Added sorting by id
+
 ## 0.0.5 (2015-01-29)
 
 Features:
