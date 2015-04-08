@@ -4,7 +4,6 @@
         <button class="btn-more" {{action "goToJob" job}}>More</button>
     </div>
     <div class="console">
-        <div class="title">Object</div>
         <pre>{{json-pretty data=job}}</pre>
     </div>
     {{#if job.error}}

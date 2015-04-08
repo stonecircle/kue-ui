@@ -36,36 +36,38 @@
 .heading{display:table-row;text-align: center;}
 .table-row{display:table-row;text-align: center;}
 .col{display:table-cell;}
-.col-id {cursor: pointer;}
+.col-id span{cursor: pointer;}
 .job, .jobs .heading{
     font-family: 'Open Sans', sans-serif; padding: 0px 10px; font-size: 12px;
     height: 40px; padding-left: 10px; line-height: 40px;
+    border: 1px solid rgb(239, 239, 239);
 }
-.jobs .heading {font-weight: bold; background: #ededed; color: #646464; text-transform: uppercase; font-size: 12px;}
+.jobs .heading {font-weight: bold; color: #646464; text-transform: uppercase; font-size: 12px; border-bottom: 2px solid #646464;}
 .jobs .empty { padding: 10px; font-family: 'Open Sans'; font-size: 12px;}
 .job:nth-child(odd) {background: #F8F8F8}
 .job:nth-child(even) {background: white}
 .job.active {background: #CF553E!important; color: white!important; }
-.job:hover {background: #ededed;}
+.job:hover {background: #ededed; cursor: pointer;}
 
 /* right panel */
 .panel-right { position: fixed; right: 0; top: 0; width: 400px; height: 100%; overflow-y: scroll;}
 .job-detail .btn-more{ position: absolute; top: 30px; right: 20px;}
-.job-detail .title { height: 75px; line-height: 75px; font-family: 'Open Sans', sans-serif; font-size: 14px; padding-left: 20px;}
+.job-detail .title { height: 75px; line-height: 75px; font-family: 'Open Sans', sans-serif; font-size: 14px; padding-left: 20px; border-bottom: 2px solid #646464;}
 .error .title, .console .title{ height: 30px; line-height: 30px; background: #ededed;font-weight: bold; color: #646464; text-transform: uppercase; font-size: 12px;}
 .error .error-output{ font-family: monospace; white-space: pre-wrap; padding: 10px; font-size: 12px; color: red;}
 
 /* paging component */
-.paging { background: #ededed; height: 40px; line-height: 40px; font-family: 'Open Sans'; padding-left: 10px; font-size: 12px; text-transform: uppercase;}
+.paging { border-right: 1px solid rgb(239, 239, 239); height: 40px; line-height: 40px; font-family: 'Open Sans'; padding-left: 10px; font-size: 12px; text-transform: uppercase;}
 
 /* stats-panel */
 .stats-panel {font-family: 'Open Sans';  border: 1px #fafafa solid;}
 .stats-panel a { text-decoration: none; color: black;}
-.stats-panel .title { height: 40px; line-height: 40px; padding-left: 10px; font-weight: bold; background: #ededed; color: #646464; text-transform: uppercase; font-size: 12px;}
-.stats-panel .field{font-size: 13px; padding: 5px 10px;}
+.stats-panel .title { height: 40px; line-height: 40px; padding-left: 10px; font-weight: bold;border: 1px solid rgb(239, 239, 239); border-bottom: 2px solid #646464; color: #646464; text-transform: uppercase; font-size: 12px;}
+.stats-panel .field{font-size: 13px; padding: 5px 10px; border: 1px solid rgb(239, 239, 239); border-top: 0;}
 .stats-panel .field:nth-child(odd) {background: #F8F8F8}
 .stats-panel .field:nth-child(even) {background: white}
 .stats-panel .field:hover { background: #ededed;}
+.stats-panel .field a:hover { text-decoration: underline;}
 
 /* input */
 .input-search {margin: 10px 0px; text-align: center;}

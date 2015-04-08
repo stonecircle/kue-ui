@@ -42,16 +42,16 @@ jobs.process('email', 10, function (job, done) {
 });
 
 // start the UI
-ui.setup({
-    apiURL: '/api',
-    baseURL: '/test',
-    updateInterval: 1000
-});
+// ui.setup({
+//     apiURL: '/api',
+//     baseURL: '/test',
+//     updateInterval: 1000
+// });
 
 var app = express();
 app.use(cors());
 app.use('/api', kue.app);
-app.use('/test', ui.app);
+// app.use('/test', ui.app);
 
 app.listen(3000);
 console.log('UI started on port 3000');
