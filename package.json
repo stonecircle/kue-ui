@@ -29,6 +29,9 @@
     "express": "4.12.4",
     "jade": "1.9.2"
   },
+  "scripts": {
+    "start": "node bin/ui"
+  },
   "homepage": "https://github.com/StreetHub/kue-ui",
   "devDependencies": {
     "load-grunt-tasks": "^1.0.0",
