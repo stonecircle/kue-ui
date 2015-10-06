@@ -24,7 +24,7 @@
     "url": "https://github.com/StreetHub/kue-ui/issues"
   },
   "dependencies": {
-    "kue": "0.9.3",
+    "kue": "0.9.6",
     "cors": "2.6.0",
     "express": "4.12.4",
     "jade": "1.9.2"
