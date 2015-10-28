@@ -20,6 +20,11 @@ var express = require('express');
 var ui = require('kue-ui');
 var app = express();
 
+// connect kue to appropriate redis, or omit for default localhost
+kue.createQueue({
+    redis: REDIS_URL
+});
+
 ui.setup({
     apiURL: '/api', // IMPORTANT: specify the api url
     baseURL: '/kue', // IMPORTANT: specify the base url
