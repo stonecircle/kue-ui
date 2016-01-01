@@ -1,5 +1,7 @@
 /* jshint node: true */
 
+var kueServerDomain = 'http://localhost:4040';
+
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'client',
@@ -25,16 +27,16 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.apiURL = 'http://localhost:3000/api'; // remove trailing slash
+    ENV.apiURL = `${kueServerDomain}`; // remove trailing slash
     ENV.contentSecurityPolicy = {
       'default-src': "'none' ",
-      'script-src': "'self' 'unsafe-eval' http://localhost:3000",
+      'script-src': `'self' 'unsafe-eval' ${kueServerDomain}`,
       'font-src': "'self' https://fonts.gstatic.com",
-      'connect-src': "'self' http://localhost:3000",
+      'connect-src': `'self' ${kueServerDomain}`,
       'img-src': "'self'",
       'style-src': "'self' https://fonts.googleapis.com",
       'media-src': "'self'"
-    }
+    };
   }
 
 
