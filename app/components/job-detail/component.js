@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Job from '../models/job';
+import Job from 'client/models/job';
 
 export default Ember.Component.extend({
     selections: Job.STATES,
