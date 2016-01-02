@@ -34,7 +34,7 @@ module.exports = function(environment) {
       'font-src': "'self' https://fonts.gstatic.com",
       'connect-src': `'self' ${kueServerDomain}`,
       'img-src': "'self'",
-      'style-src': "'self' https://fonts.googleapis.com",
+      'style-src': "'self' https://fonts.googleapis.com 'unsafe-inline'",
       'media-src': "'self'"
     };
   }
