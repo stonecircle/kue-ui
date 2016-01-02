@@ -6,20 +6,20 @@ export default Ember.Controller.extend({
     return {
 
       chart: {
-        type: 'bar'
+        type: 'column'
       },
       title: {
-        text: 'Fruit Consumption'
+        text: 'Jobs by hour'
       },
       xAxis: {
         categories: Object.keys(this.get('model.complete')).map(function(item){
           console.log(item);
-          return moment(parseInt(item)).format('dddd HH');
+          return moment(parseInt(item)).format('ddd HH');
         })
       },
       yAxis: {
         title: {
-          text: 'Fruit eaten'
+          text: 'Job count'
         }
       }
     }
