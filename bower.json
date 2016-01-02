@@ -13,8 +13,10 @@
     "jquery": "^1.11.3",
     "loader.js": "ember-cli/loader.js#3.4.0",
     "lodash": "~2.4.1",
-    "moment": "~2.8.4",
+    "moment": ">= 2.8.0",
     "perfect-scrollbar": "~0.6.1",
-    "qunit": "~1.20.0"
+    "qunit": "~1.20.0",
+    "moment-timezone": ">= 0.1.0",
+    "highcharts": "~4.2.1"
   }
 }

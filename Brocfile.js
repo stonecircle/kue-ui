@@ -8,7 +8,6 @@ app.import('app/styles/reset.css');
 app.import('app/styles/alert.css');
 app.import('bower_components/perfect-scrollbar/css/perfect-scrollbar.css');
 app.import('bower_components/jquery-jsonview/dist/jquery.jsonview.css');
-app.import('bower_components/moment/moment.js');
 app.import('bower_components/lodash/dist/lodash.js');
 app.import('bower_components/jquery-jsonview/dist/jquery.jsonview.js');
 app.import('bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.js');

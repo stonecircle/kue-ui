@@ -12,6 +12,7 @@ Router.map(function() {
       this.route('show', { path: ":id" });
       this.route('new', { path: "/new" });
   });
+  this.route('history');
 });
 
 export default Router;
