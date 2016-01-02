@@ -1,23 +1,30 @@
 import Ember from 'ember';
+import moment from 'moment';
 
 export default Ember.Controller.extend({
-  chartOptions: {
-    chart: {
-      type: 'bar'
-    },
-    title: {
-      text: 'Fruit Consumption'
-    },
-    xAxis: {
-      categories: ['Apples', 'Bananas', 'Oranges']
-    },
-    yAxis: {
+  chartOptions: Ember.computed(function() {
+    return {
+
+      chart: {
+        type: 'bar'
+      },
       title: {
-        text: 'Fruit eaten'
+        text: 'Fruit Consumption'
+      },
+      xAxis: {
+        categories: Object.keys(this.get('model.complete')).map(function(item){
+          console.log(item);
+          return moment(parseInt(item)).format('dddd HH');
+        })
+      },
+      yAxis: {
+        title: {
+          text: 'Fruit eaten'
+        }
       }
     }
-  },
-  chartData: Ember.computed('model.complete.@each.length','model.failed.@each.length', function() {
+  }),
+  chartData: Ember.computed('model.complete.@each.length', 'model.failed.@each.length', function() {
     return [{
       name: 'Complete',
       data: Object.keys(this.get('model.complete')).map((item) => {
