@@ -11,7 +11,7 @@ export default Ember.Component.extend({
         this.printJSON();
     },
 
-    jobDidChange: function() {
+    jobDidChange: Ember.observer('data', function() {
         this.printJSON();
-    }.observes('data')
+    })
 });

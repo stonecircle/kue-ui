@@ -8,15 +8,15 @@ export default Ember.Component.extend({
     menuTree: [],
     // jobStates: Ember.A(Job.STATES),
 
-    setScroll: function() {
+    setScroll: Ember.on('didInsertElement', function() {
         Ember.$('.menu').perfectScrollbar();
-    }.on('didInsertElement'),
+    }),
 
-    paramsDidChange: function(){
+    paramsDidChange: Ember.observer('typeParam', 'stateParam', 'menuTree', 'menuTree.[]', function(){
         this.updateActiveState();
-    }.observes('typeParam', 'stateParam', 'menuTree', 'menuTree.[]'),
+    }),
 
-    jobStates: function() {
+    jobStates: Ember.computed('stats', 'stats.[]', function() {
         var states = Ember.A(Job.STATES);
         var stats = this.get('stats');
         if(Ember.isEmpty(stats)) return;
@@ -26,9 +26,9 @@ export default Ember.Component.extend({
                 count: stats[state+'Count']
             };
         });
-    }.property('stats', 'stats.[]'),
+    }),
 
-    breakdownsDidLoad: function() {
+    breakdownsDidLoad: Ember.observer('breakdowns', 'breakdowns.[]', function() {
         var breakdowns = this.get('breakdowns');
         var byType = _.groupBy(breakdowns, 'type');
         var menu = [];
@@ -42,7 +42,7 @@ export default Ember.Component.extend({
             });
         }
         this.set('menuTree', menu);
-    }.observes('breakdowns', 'breakdowns.[]'),
+    }),
 
     computeTotal: function(arr) {
         return arr.reduce((acc, obj) => obj.count + acc, 0);
