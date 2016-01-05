@@ -7,14 +7,14 @@ export default Ember.Controller.extend({
 
     jobId: '',
 
-    initStatsRefresh: function() {
+    initStatsRefresh: Ember.on('init', function() {
         var self = this;
         self.updateStats(); // first call
 
         if (!isNaN(ENV.updateInterval)) {
             setInterval(() => self.updateStats(), ENV.updateInterval); // every Xs
         }
-    }.on('init'),
+    }),
 
     updateStats: function() {
         var self = this;
