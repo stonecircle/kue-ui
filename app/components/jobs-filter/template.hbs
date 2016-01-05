@@ -1,11 +1,14 @@
 <div class="top-bar">
     <div class="type">{{type}} <span class="gt">></span></div>
     <div class="dropdown">
-        {{view Ember.Select content=selections selection=selectedState}}
+      {{#x-select value=selectedState}}
+        {{#each selections as |selection|}}
+          {{#x-option value=selection}}{{selection}}{{/x-option}}
+        {{/each}}
+      {{/x-select}}
     </div>
 </div>
 
 {{yield}}
 
 {{jobs-paging page=page}}
-
