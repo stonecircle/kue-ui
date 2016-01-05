@@ -1,6 +1,12 @@
 <div class="job-detail">
     <div class="title">
-        Job #{{job.id}} {{view Ember.Select content=selections selection=job.selected}}
+        Job #{{job.id}}
+        {{#x-select value=job.selected}}
+          {{#each selections as |selection|}}
+            {{#x-option value=selection}}{{selection}}{{/x-option}}
+          {{/each}}
+        {{/x-select}}
+
         <button class="btn-more" {{action "goToJob" job}}>More</button>
     </div>
     <div class="console">
@@ -16,4 +22,3 @@
     {{/if}}
     <button class="btn-remove" {{action "removeJob" job}}>Delete</button>
 </div>
-
