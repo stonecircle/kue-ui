@@ -5,11 +5,11 @@ export default Ember.Component.extend({
     page: 1,
 
     actions: {
-        next: function() {
+        next() {
             this.incrementProperty('page');
         },
 
-        previous: function() {
+        previous() {
             if(this.get('page') > 1) this.decrementProperty('page');
         }
     }

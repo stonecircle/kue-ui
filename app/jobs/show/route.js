@@ -3,7 +3,7 @@ import Job from '../../models/job';
 
 export default Ember.Route.extend({
 
-    model: function(params) {
+    model(params) {
         return Job.findOne({
             id: params.id
         });

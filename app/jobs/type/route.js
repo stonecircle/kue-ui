@@ -10,7 +10,7 @@ export default Ember.Route.extend({
         order: { refreshModel: true }
     },
 
-    model: function(params) {
+    model(params) {
         this.controllerFor('jobs.type').set('type', params.type);
         this.controllerFor('jobs.type').set('state', params.state);
         this.controllerFor('application').set('type', params.type);
@@ -23,7 +23,7 @@ export default Ember.Route.extend({
         });
     },
 
-    activate: function() {
+    activate() {
         this._super();
         window.scrollTo(0,0);
     }
