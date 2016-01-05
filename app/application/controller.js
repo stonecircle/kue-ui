@@ -3,7 +3,7 @@ import Job from '../models/job';
 import ENV from '../config/environment';
 
 export default Ember.Controller.extend({
-    needs: ["jobs/index"],
+    indexController: Ember.inject.controller('jobs/index'),
 
     jobId: '',
 
@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
         })
         .then(function(res) {
             self.set('breakdowns', res);
-            self.get('controllers.jobs/index').set('breakdowns', res);
+            self.get('indexController').set('breakdowns', res);
         });
     },
 
