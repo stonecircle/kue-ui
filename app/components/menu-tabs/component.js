@@ -44,11 +44,11 @@ export default Ember.Component.extend({
         this.set('menuTree', menu);
     }),
 
-    computeTotal: function(arr) {
+    computeTotal(arr) {
         return arr.reduce((acc, obj) => obj.count + acc, 0);
     },
 
-    updateActiveState: function() {
+    updateActiveState() {
         var selected = {
             state: this.get('stateParam'),
             type: this.get('typeParam'),
@@ -69,7 +69,7 @@ export default Ember.Component.extend({
     },
 
     actions: {
-        goToItem: function(item) {
+        goToItem(item) {
             this.sendAction("action", item);
         },
 

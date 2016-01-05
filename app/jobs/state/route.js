@@ -7,7 +7,7 @@ export default Ember.Route.extend({
         order: { refreshModel: true }
     },
 
-    model: function(params) {
+    model(params) {
         this.controllerFor('application').set('type', null);
         this.controllerFor('application').set('state', params.stateId);
         return Job.find({
@@ -17,7 +17,7 @@ export default Ember.Route.extend({
         });
     },
 
-    activate: function() {
+    activate() {
         this._super();
         window.scrollTo(0,0);
     }

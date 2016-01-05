@@ -19,11 +19,11 @@ export default Ember.Component.extend({
 
     actions: {
 
-        goToJob: function(job) {
+        goToJob(job) {
             this.sendAction('action', job);
         },
 
-        removeJob: function(job) {
+        removeJob(job) {
             this.sendAction('removeAction', job);
         }
      }

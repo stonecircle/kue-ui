@@ -23,7 +23,7 @@ var Job = Ember.Object.extend({ // Instance methods
 
     deleted: Ember.computed.alias('isDestroyed'),
 
-    updateState: function(state) {
+    updateState(state) {
         var id = this.get('id');
         state = state || this.get('state');
 
@@ -41,7 +41,7 @@ var Job = Ember.Object.extend({ // Instance methods
         });
     },
 
-    remove: function() {
+    remove() {
         var id = this.get('id');
         return Job._request({
             method: 'DELETE',
@@ -67,7 +67,7 @@ Job.reopenClass({ // Class methods
      * @param  {Object} opts Options
      * @return {Object}      Promise
      */
-    _request: function(opts={}) {
+    _request(opts={}) {
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax({
                 url: opts.url,
@@ -84,7 +84,7 @@ Job.reopenClass({ // Class methods
      * @param  {Object} opts Options
      * @return {Object}      Promise
      */
-    find: function(opts={}) {
+    find(opts={}) {
         var size = Number(opts.size) || 20;
         var page = Number(opts.page) || 1;
         var from = (page - 1) * size;
@@ -121,7 +121,7 @@ Job.reopenClass({ // Class methods
      * @param  {Object} opts={} Options
      * @return {Object}           Promise
      */
-    findOne: function(opts={}) {
+    findOne(opts={}) {
         return this._request({
             method: 'GET',
             url: `${config.apiURL}/job/${opts.id}`
@@ -133,7 +133,7 @@ Job.reopenClass({ // Class methods
      * Fetch stats from the Jobs
      * @return {Object} Promise
      */
-    stats: function(opts={}) {
+    stats(opts={}) {
         var type = opts.type;
         var state = opts.state;
         var url = '';
@@ -154,7 +154,7 @@ Job.reopenClass({ // Class methods
      * Return all the job types
      * @return {Object} Promise
      */
-    types: function() {
+    types() {
         return this._request({
             method: 'GET',
             url: `${config.apiURL}/job/types/`

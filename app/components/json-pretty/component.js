@@ -2,12 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-    printJSON: function() {
+    printJSON() {
        var data = this.get('data');
         Ember.$("#json").JSONView(JSON.stringify(data));
     },
 
-    didInsertElement: function() {
+    didInsertElement() {
         this.printJSON();
     },
 

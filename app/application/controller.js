@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
         }
     }),
 
-    updateStats: function() {
+    updateStats() {
         var self = this;
         Job.stats().then(function(data) {
             self.set('stats', data);
@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
         });
     },
 
-    getAllStates: function(type) {
+    getAllStates(type) {
         var promises = Job.STATES.map(function(state) {
             var query = { type: type, state: state };
             return Job.stats(query).then( res => _.extend(res, query) );
@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
         return Ember.RSVP.Promise.all(promises);
     },
 
-    getCountBreakdowns: function() {
+    getCountBreakdowns() {
         var self = this;
         return Job.stats().then(function(stats) {
             return self.controllerFor('jobs.index').set('stats', stats);
@@ -51,13 +51,13 @@ export default Ember.Controller.extend({
     },
 
     actions: {
-        goToTypeRoute: function(obj) {
+        goToTypeRoute(obj) {
             this.transitionToRoute('jobs.type', obj.type, {queryParams:
                 {state: obj.state || 'active'}
             });
         },
 
-        goToJobRoute: function() {
+        goToJobRoute() {
             this.transitionToRoute('jobs.show', this.get('jobId'));
         }
     }
