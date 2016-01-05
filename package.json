@@ -39,6 +39,7 @@
     "ember-export-application-global": "^1.0.4",
     "ember-highcharts": "0.3.0",
     "ember-moment": "5.0.1",
-    "ember-notify": "^4.3.1"
+    "ember-notify": "^4.3.1",
+    "ember-watson": "^0.7.0"
   }
 }
