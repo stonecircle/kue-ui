@@ -119,7 +119,9 @@ Job.reopenClass({ // Class methods
             method: 'GET',
             url: `${config.apiURL}/job/${opts.id}`
         })
-        .then(Job.create);
+        .then(function(result){
+          return Job.create(result);
+        });
     },
 
     /**
