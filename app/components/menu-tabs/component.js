@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Job from 'client/models/job';
+import Job from 'client/models/job-non-model';
 
 export default Ember.Component.extend({
     breakdowns: Ember.A([]),
