@@ -23,27 +23,17 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
-    ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.apiURL = `${kueServerDomain}`; // remove trailing slash
-    ENV.contentSecurityPolicy = {
-      'default-src': "'none' ",
-      'script-src': `'self' 'unsafe-eval' ${kueServerDomain}`,
-      'font-src': "'self' https://fonts.gstatic.com",
-      'connect-src': `'self' ${kueServerDomain}`,
-      'img-src': "'self'",
-      'style-src': "'self' https://fonts.googleapis.com 'unsafe-inline'",
-      'media-src': "'self'"
-    };
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
-
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
-    ENV.locationType = 'auto';
+    ENV.locationType = 'none';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
@@ -58,5 +48,6 @@ module.exports = function(environment) {
     ENV.baseURL = 'BASE_URL';
     ENV.updateInterval = 'UPDATE_INTERVAL';
   }
+
   return ENV;
 };

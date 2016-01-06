@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     queryParams: ['page', 'order'],
-    page: Ember.computed(function(){return 1;}),
+    page: 1,
     order: 'asc',
 
     actions: {
