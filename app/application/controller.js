@@ -39,7 +39,7 @@ export default Ember.Controller.extend({
     getCountBreakdowns() {
         var self = this;
         return Job.stats().then(function(stats) {
-            return self.controllerFor('jobs.index').set('stats', stats);
+            return self.get('indexController').set('stats', stats);
         })
         .then(function() {
             return Job.types();
