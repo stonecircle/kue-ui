@@ -79,7 +79,3 @@
 
 /*other*/
 #json .jsonview { font-size: 1em; margin-left: 10px; margin-top: 10px;}
-
-/* alert */
-.ember-notify-cn { top: 0px!important;}
-.alert{ font-family: 'Open Sans', sans-serif; font-size: 14px; }
