@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
-export function formatError(input) {
-  return input;
+export function formatError(params/*, hash*/) {
+  return params[0];
 }
 
-export default Ember.Handlebars.makeBoundHelper(formatError);
+export default Ember.Helper.helper(formatError);
