@@ -10,8 +10,8 @@
       <div class="col">updated_at</div>
       <div class="col">attempts</div>
   </div>
-    {{#each job in jobs}}
-      <div {{bind-attr class=":table-row :job job.active:active"}} {{action "showDetail" job}}>
+    {{#each jobs as |job|}}
+      <div class="table-row job {{if job.active 'active'}}" {{action "showDetail" job}}>
         <div class="col">{{job.id}}</div>
         <div class="col">{{job.type}}</div>
         <div class="col">{{job.state}}</div>

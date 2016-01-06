@@ -1,11 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    queryParams: ['state', 'sort', 'page', 'order'],
+    queryParams: ['state', 'page', 'order'],
     // query params will be a separate  value for every object implementing the mixin
-    state: Ember.computed(function(){return null; }),
-    sort: Ember.computed(function(){return null; }),
-    page: Ember.computed(function(){return 1;}),
+    state: 'active',
+    page: 1,
     order: 'asc',
 
     actions: {

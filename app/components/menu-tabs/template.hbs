@@ -1,16 +1,16 @@
 <div class="menu-list">
-  {{#each s in jobStates}}
+  {{#each jobStates as |s|}}
     {{#link-to 'jobs.state' s.state class="item"}}
       {{s.state}} <span class="item-count">{{s.count}}</span>
     {{/link-to}}
   {{/each}}
-  {{#each item in items}}
+  {{#each items as |item|}}
 
-    <a {{action "goToItem" item}} {{bind-attr class=":item item.active:active"}}>
+    <a {{action "goToItem" item}} class="item {{if item.active 'active'}}">
       {{item.type}} <span class="item-count">{{item.count}}</span>
     </a>
-      {{#each subItem in item.subItems}}
-         <a {{action "goToItem" subItem}} {{bind-attr class=":sub-item subItem.active:active subItem.hide:hide"}}>
+      {{#each item.subItems as |subItem|}}
+         <a {{action "goToItem" subItem}} class="sub-item {{if subItem.active 'active'}} {{if subItem.hide 'hide'}}">
           {{subItem.state}} <span class="sub-item-count">{{subItem.count}}</span>
          </a>
       {{/each}}

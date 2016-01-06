@@ -1,22 +1,23 @@
 {
   "name": "client",
   "dependencies": {
+    "ember": "2.2.0",
     "ember-cli-shims": "0.0.6",
-    "ember-cli-test-loader": "0.2.1",
-    "ember-data": "1.13.15",
+    "ember-cli-test-loader": "0.2.2",
+    "ember-data": "^2.2.0",
     "ember-load-initializers": "0.1.7",
     "ember-qunit-notifications": "0.1.0",
-    "ember-qunit": "0.4.16",
-    "ember-resolver": "~0.1.20",
-    "ember": "1.13.11",
     "jquery-jsonview": "~1.2.0",
     "jquery": "^1.11.3",
-    "loader.js": "ember-cli/loader.js#3.4.0",
     "lodash": "~2.4.1",
     "moment": ">= 2.8.0",
     "perfect-scrollbar": "~0.6.1",
-    "qunit": "~1.20.0",
     "moment-timezone": ">= 0.1.0",
-    "highcharts": "~4.2.1"
+    "highcharts": "~4.2.1",
+    "loader.js": "^3.5.0",
+    "qunit": "~1.20.0"
+  },
+  "resolutions": {
+    "ember": "2.2.0"
   }
 }

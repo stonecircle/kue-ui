@@ -21,7 +21,7 @@
     <br>
     <div class="stats-panel">
         <div class="title">Breakdown</div>
-        {{#each stat in breakdowns}}
+        {{#each breakdowns as |stat|}}
             <div class="field">
             {{#link-to 'jobs.type' stat.type (query-params state=stat.state)}}
                 {{stat.type}} > {{stat.state}}: {{stat.count}}
