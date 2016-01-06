@@ -12,7 +12,9 @@ Router.map(function() {
       this.route('show', { path: ":id" });
       this.route('new', { path: "/new" });
   });
-  this.route('history');
+  this.route('history', function() {
+    this.route('detail', {path: ":timestamp"});
+  });
 });
 
 export default Router;
