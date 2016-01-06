@@ -12,12 +12,26 @@ export default Ember.Controller.extend({
       },
       xAxis: {
         categories: this.get('model').map(function(stat){
-          return moment(parseInt(stat.id)).format('ddd HH');
-        })
+          return parseInt(stat.id);
+        }),
+        labels: {
+          formatter: function(){
+            return moment(this.value).format('ddd HH');
+          }
+        }
       },
       yAxis: {
         title: {
           text: 'Job count'
+        }
+      },
+      plotOptions:{
+        column: {
+          events: {
+            click: (event) => {
+              this.transitionToRoute('history.detail', event.point.category);
+            }
+          }
         }
       }
     };
