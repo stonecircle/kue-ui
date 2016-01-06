@@ -4,7 +4,7 @@ import Job from 'client/models/job';
 export default Ember.Component.extend({
     selections: Job.STATES,
 
-    setup: Ember.on('didInsertElement', function() {
+    setup: Ember.on('init', function() {
         this.set('job.selected', this.get('job.state'));
     }).observes('job.id'),
 
