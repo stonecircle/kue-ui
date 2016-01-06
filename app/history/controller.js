@@ -29,7 +29,10 @@ export default Ember.Controller.extend({
         column: {
           events: {
             click: (event) => {
-              this.transitionToRoute('history.detail', event.point.category);
+
+              this.transitionToRoute('history.detail', event.point.category, {queryParams: {
+                state: event.point.series.name
+              }});
             }
           }
         }
