@@ -7,10 +7,6 @@ export default Ember.Controller.extend({
 
     actions: {
 
-        goToJob(job) {
-            this.transitionToRoute('jobs.show', job);
-        },
-
         removeJob(job) {
             var self = this;
             job.remove().then(function() {
