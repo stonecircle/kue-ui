@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import config from '../config/environment';
-import Notify from 'ember-notify';
 
 // '/stats'
 // '/job/search'
@@ -32,12 +31,10 @@ var Job = Ember.Object.extend({ // Instance methods
             url: `${config.apiURL}/job/${id}/state/${state}`
         })
         .then(function(job) {
-            Notify.success('Job state updated');
             return job;
         })
         .catch(function(err) {
-            console.log('Job state update error', err);
-            Notify.warning('Error updating job');
+            console.warn('Job state update error', err);
         });
     },
 
@@ -47,12 +44,8 @@ var Job = Ember.Object.extend({ // Instance methods
             method: 'DELETE',
             url: `${config.apiURL}/job/${id}/`
         })
-        .then(function() {
-            Notify.success('Job deleted');
-        })
         .catch(function(err) {
-            console.log('Job remove error', err);
-            Notify.warning('Error removing job');
+            console.warn('Job remove error', err);
         });
     }
 
