@@ -2,7 +2,7 @@
   <div class="menu">
     <div class="logo">{{#link-to "jobs.index"}} kue {{/link-to}}</div>
     <div class="input-search">
-      {{input value=jobId placeholder="id" class="input" action="goToJobRoute" on="enter"}}
+      {{input value=jobId placeholder="id" class="input" enter="goToJobRoute"}}
     </div>
     {{menu-tabs stats=stats breakdowns=breakdowns stateParam=state typeParam=type action="goToTypeRoute"}}
   </div>
