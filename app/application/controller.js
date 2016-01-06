@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Job from '../models/job';
+import Job from '../models/job-non-model';
 import ENV from '../config/environment';
 
 export default Ember.Controller.extend({
