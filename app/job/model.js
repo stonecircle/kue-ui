@@ -6,16 +6,17 @@ const {
 } = DS;
 
 export default Model.extend({
-  type: attr('string'),
+  attempts: attr(),
+  created_at: attr('string'),
+  duration: attr('number'),
+  error: attr('string'),
+  jobData: attr(),
   priority: attr('number'),
   progress: attr('number'),
-  state: attr('string'),
-  created_at: attr('string'),
   promote_at: attr('string'),
-  updated_at: attr('string'),
   started_at: attr('string'),
-  duration: attr('number'),
+  state: attr('string'),
+  type: attr('string'),
+  updated_at: attr('string'),
   workerId: attr('string'),
-  attempts: attr(),
-  jobData: attr(),
 });
