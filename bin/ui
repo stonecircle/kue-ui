@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+var kue = require('kue');
+var express = require('express');
+var cors = require('cors');
+
+var ui = require('../lib/kue-ui');
+
+var PORT = process.env.PORT || 3000;
+var KUE_URL = process.env.KUE_URL;
+
+var jobs = kue.createQueue({
+    redis: KUE_URL || 'redis://localhost:6379'
+});
+
+ui.setup({
+    apiURL: '/api',
+    baseURL: '/',
+    updateInterval: 1000
+});
+
+var app = express();
+app.use(cors());
+app.use('/api', kue.app);
+app.use('/', ui.app);
+
+var server = app.listen(PORT, function() {
+    var address = server.address();
+    console.log('UI started on port ' + address.port);
+});
