@@ -90,6 +90,6 @@ GET http://localhost:3000/api/jobs/video%20conversion/inactive/stats 404 (Not Fo
 
 ### Contributors
 
-* [Arnaud Benard](github.com/arnaudbenard)
-* [Peter Kadlot](github.com/daralthus)
-* [Alex Loizou](github.com/alexloi)
+* [Arnaud Benard](//github.com/arnaudbenard)
+* [Peter Kadlot](//github.com/daralthus)
+* [Alex Loizou](//github.com/alexloi)
