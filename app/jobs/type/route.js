@@ -3,6 +3,7 @@ import Job from '../../models/job-non-model';
 
 export default Ember.Route.extend({
 
+  jobs: Ember.inject.service(),
      queryParams: {
         page: { refreshModel: true },
         sort: { refreshModel: true },
@@ -12,7 +13,7 @@ export default Ember.Route.extend({
     model(params) {
         this.controllerFor('jobs.type').set('type', params.type);
         this.controllerFor('application').set('type', params.type);
-        return Job.find({
+        return this.get('jobs').find({
             type: params.type,
             state: params.state,
             page: params.page,

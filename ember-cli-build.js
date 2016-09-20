@@ -2,9 +2,15 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
+var env = EmberApp.env();
+var isProductionLikeBuild = ['production', 'staging'].indexOf(env) > -1;
+
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    fingerprint: {
+      enabled: isProductionLikeBuild,
+      prepend: 'https://s3-eu-west-1.amazonaws.com/nmcn-website-assets/'
+    },
   });
 
   app.import('app/styles/reset.css');

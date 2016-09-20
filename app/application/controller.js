@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
     indexController: Ember.inject.controller('jobs/index'),
 
     jobId: '',
+    jobs: Ember.inject.service(),
 
     initStatsRefresh: Ember.on('init', function() {
         var self = this;
@@ -18,7 +19,7 @@ export default Ember.Controller.extend({
 
     updateStats() {
         var self = this;
-        Job.stats().then(function(data) {
+        this.get('jobs').stats().then(function(data) {
             self.set('stats', data);
             return self.getCountBreakdowns();
         })
@@ -31,14 +32,14 @@ export default Ember.Controller.extend({
     getAllStates(type) {
         var promises = Job.STATES.map(function(state) {
             var query = { type: type, state: state };
-            return Job.stats(query).then( res => _.extend(res, query) );
+            return this.get('jobs').stats(query).then( res => _.extend(res, query) );
         });
         return Ember.RSVP.Promise.all(promises);
     },
 
     getCountBreakdowns() {
         var self = this;
-        return Job.stats().then(function(stats) {
+        return this.get('jobs').stats().then(function(stats) {
             return self.get('indexController').set('stats', stats);
         })
         .then(function() {

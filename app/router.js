@@ -15,6 +15,7 @@ Router.map(function() {
   this.route('history', function() {
     this.route('detail', {path: ":timestamp"});
   });
+  this.route('login');
 });
 
 export default Router;

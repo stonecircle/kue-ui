@@ -1,7 +1,5 @@
 /* jshint node: true */
 
-var kueServerDomain = 'http://localhost:4040';
-
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'client',
@@ -18,7 +16,8 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+    authMaker: {},
   };
 
   if (environment === 'development') {
@@ -26,8 +25,12 @@ module.exports = function(environment) {
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    ENV.apiURL = `${kueServerDomain}`; // remove trailing slash
+    ENV.apiURL = 'http://localhost:4040';
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.authMaker.domainUrl = "http://localhost:5000";
+    ENV.authMaker.redirectUri = "http://localhost:4200/login";
+    ENV.authMaker.clientId = "LjSnLQKCLWiG9EbqH3Kz";
   }
 
   if (environment === 'test') {
@@ -44,9 +47,11 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // for search and replace in dist/index.html
-    ENV.apiURL = 'API_URL';
-    ENV.baseURL = 'BASE_URL';
-    ENV.updateInterval = 'UPDATE_INTERVAL';
+    ENV.apiURL = 'https://kue.nmcn.co/api';
+
+    ENV.authMaker.domainUrl = "https://auth.nmcn.co";
+    ENV.authMaker.redirectUri = "https://kue.nmcn.co/login";
+    ENV.authMaker.clientId = "hQaVQRQ9yWG9yBeUtADo";
   }
 
   return ENV;

@@ -3,6 +3,7 @@ import Job from 'client/models/job-non-model';
 
 export default Ember.Component.extend({
     selections: Job.STATES,
+    jobs: Ember.inject.service(),
 
     setup: Ember.on('init', function() {
         this.set('job.selected', this.get('job.state'));
@@ -13,7 +14,8 @@ export default Ember.Component.extend({
 
         if (this.get('job.state') !== this.get('job.selected')) {
             this.set('job.state', this.get('job.selected'));
-            this.get('job').updateState();
+
+            this.get('jobs').updateState(this.get('job.id'), this.get('job.state'));
         }
     }),
 
