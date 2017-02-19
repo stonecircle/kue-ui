@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import _ from 'lodash';
+
 import Job from '../models/job-non-model';
 import ENV from '../config/environment';
 

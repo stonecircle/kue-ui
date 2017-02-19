@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import Job from 'client/models/job-non-model';
 
+import _ from 'lodash';
+
 export default Ember.Component.extend({
     breakdowns: Ember.A([]),
     selected: null,
