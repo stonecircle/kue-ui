@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import config from 'client/config/environment';
+import config from '../config/environment';
 
-import Job from 'client/models/job-non-model';
+import Job from '../models/job-non-model';
 
 export default Ember.Service.extend({
 

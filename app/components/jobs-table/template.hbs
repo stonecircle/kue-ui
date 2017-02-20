@@ -15,8 +15,8 @@
         <div class="col">{{job.id}}</div>
         <div class="col">{{job.type}}</div>
         <div class="col">{{job.state}}</div>
-        <div class="col">{{moment-format job.created_at "DD/MM/YYYY HH:mm:ss"}}</div>
-        <div class="col">{{moment-format job.updated_at "DD/MM/YYYY HH:mm:ss"}}</div>
+        <div class="col">{{moment-format job.created_at "DD/MM/YYYY HH:mm:ss" "x"}}</div>
+        <div class="col">{{moment-format job.updated_at "DD/MM/YYYY HH:mm:ss" "x"}}</div>
         <div class="col">{{job.attempts.made}} ({{job.attempts.remaining}}) </div>
       </div>
       {{else}}

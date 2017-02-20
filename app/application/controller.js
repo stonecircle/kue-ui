@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
     },
 
     getAllStates(type) {
-        var promises = Job.STATES.map(function(state) {
+        var promises = Job.STATES.map((state) => {
             var query = { type: type, state: state };
             return this.get('jobs').stats(query).then( res => _.extend(res, query) );
         });
@@ -40,15 +40,12 @@ export default Ember.Controller.extend({
     },
 
     getCountBreakdowns() {
-        var self = this;
-        return this.get('jobs').stats().then(function(stats) {
-            return self.get('indexController').set('stats', stats);
+        return this.get('jobs').stats().then((stats) => {
+            return this.get('indexController').set('stats', stats);
         })
-        .then(function() {
-            return Job.types();
-        })
-        .then(function(types) {
-            var promises = types.map(type =>  self.getAllStates(type));
+        .then(() => Job.types())
+        .then((types) => {
+            var promises = types.map(type =>  this.getAllStates(type));
             return Ember.RSVP.Promise.all(promises).then(_.flatten);
         });
     },
