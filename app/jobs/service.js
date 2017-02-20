@@ -1,31 +1,43 @@
 import Ember from 'ember';
-import config from '../config/environment';
+import request from 'ember-ajax/request';
 
+import config from '../config/environment';
 import Job from '../models/job-non-model';
 
 export default Ember.Service.extend({
 
   ajax: Ember.inject.service(),
   session: Ember.inject.service(),
+  notifications: Ember.inject.service('notification-messages'),
+
+  STATES: Ember.A(['active', 'complete', 'delayed', 'failed', 'inactive']),
 
   request(opts={}) {
-    return new Ember.RSVP.Promise((resolve, reject) => {
-      this.get('session').authorize('authorizer:application', (key, value) => {
-        this.get('ajax').request(opts.url, {
-          headers: {
+    return new Ember.RSVP.Promise((resolve) => {
+      if (this.get('session.isAuthenticated')) {
+        this.get('session').authorize('authorizer:application', (key, value) => {
+          resolve({
             [key]: value
-          },
-          data: opts.data,
-          type: opts.method
-        })
-        .then(resolve)
-        .catch((err) => {
-          if (Ember.get(err, 'errors.0.status') === '401') {
-            this.get('session').invalidate();
-          }
-
-          reject(err);
+          });
         });
+      } else {
+        if (Ember.get(window, '__kueUiExpress.authmaker')) {
+          this.get('session').invalidate();
+        }
+      }
+    })
+    .then((headers) => {
+      return request(opts.url, {
+        method: opts.method,
+        data: opts.data,
+        headers: headers,
+      })
+      .then(null, (err) => {
+        if (Ember.get(err, 'errors.0.status') === '401') {
+          this.get('session').invalidate();
+        }
+
+        throw err;
       });
     });
 
@@ -103,4 +115,24 @@ export default Ember.Service.extend({
         return Job.create(result);
       });
   },
+
+  types() {
+      return this.request({
+          method: 'GET',
+          url: `${config.apiURL}/job/types/`
+      });
+  },
+
+  remove(job) {
+    var id = job.get('id');
+    return this.request({
+      method: 'DELETE',
+      url: `${config.apiURL}/job/${id}/`
+    })
+    .catch((err) => {
+      console.warn('Job remove error', err);
+      this.get('notifications').error(`Error removing Job: ${err.message}`);
+      throw err;
+    });
+  }
 });

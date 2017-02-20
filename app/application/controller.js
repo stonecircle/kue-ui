@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import _ from 'lodash';
 
-import Job from '../models/job-non-model';
 import ENV from '../config/environment';
 
 export default Ember.Controller.extend({
@@ -32,7 +31,7 @@ export default Ember.Controller.extend({
     },
 
     getAllStates(type) {
-        var promises = Job.STATES.map((state) => {
+        var promises = this.get('jobs.STATES').map((state) => {
             var query = { type: type, state: state };
             return this.get('jobs').stats(query).then( res => _.extend(res, query) );
         });
@@ -43,7 +42,7 @@ export default Ember.Controller.extend({
         return this.get('jobs').stats().then((stats) => {
             return this.get('indexController').set('stats', stats);
         })
-        .then(() => Job.types())
+        .then(() => this.get('jobs').types())
         .then((types) => {
             var promises = types.map(type =>  this.getAllStates(type));
             return Ember.RSVP.Promise.all(promises).then(_.flatten);

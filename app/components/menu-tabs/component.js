@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import Job from '../../models/job-non-model';
 
 import _ from 'lodash';
 
@@ -8,7 +7,8 @@ export default Ember.Component.extend({
     selected: null,
     items: null,
     menuTree: [],
-    // jobStates: Ember.A(Job.STATES),
+
+    jobs: Ember.inject.service(),
 
     setScroll: Ember.on('didInsertElement', function() {
         Ember.$('.menu').perfectScrollbar();
@@ -19,7 +19,7 @@ export default Ember.Component.extend({
     }),
 
     jobStates: Ember.computed('stats', 'stats.[]', function() {
-        var states = Ember.A(Job.STATES);
+        var states = Ember.A(this.get('jobs.STATES'));
         var stats = this.get('stats');
         if(Ember.isEmpty(stats)) return;
         return states.map(function(state) {

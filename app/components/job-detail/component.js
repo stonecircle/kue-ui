@@ -1,8 +1,7 @@
 import Ember from 'ember';
-import Job from '../../models/job-non-model';
 
 export default Ember.Component.extend({
-    selections: Job.STATES,
+    selections: Ember.computed.alias('jobs.STATES'),
     jobs: Ember.inject.service(),
 
     setup: Ember.on('init', function() {

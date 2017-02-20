@@ -5,19 +5,21 @@ export default Ember.Controller.extend({
     page: 1,
     order: 'asc',
 
-    actions: {
+    jobs: Ember.inject.service(),
 
-        removeJob(job) {
-            var self = this;
-            job.remove().then(function() {
-                self.get('model').removeObject(job);
-            });
-        },
+  actions: {
+    removeJob(job) {
+      this.get('jobs').remove(job).then(() => {
+        this.get('notifications').success('Job Deleted', {
+          autoClear: true,
+        });
+        this.get('model').removeObject(job);
+      });
+    },
 
         updateOrder() {
             const order = this.get('order');
             this.set('order', order === 'asc' ? 'desc' : 'asc');
         }
-
-    }
+  }
 });
