@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "kue-ui-client",
   "dependencies": {
     "jquery-jsonview": "~1.2.0",
     "perfect-scrollbar": "~0.6.1"

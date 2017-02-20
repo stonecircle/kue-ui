@@ -3,7 +3,7 @@ import config from './config/environment';
 
 const Router = Ember.Router.extend({
   location: config.locationType,
-  rootURL: config.rootURL
+  rootURL: window.__kueUiExpress ? window.__kueUiExpress.rootUrl : config.rootURL
 });
 
 Router.map(function() {

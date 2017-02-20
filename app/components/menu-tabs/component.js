@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Job from 'client/models/job-non-model';
+import Job from '../../models/job-non-model';
 
 import _ from 'lodash';
 
