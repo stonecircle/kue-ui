@@ -19,7 +19,7 @@ By just running `npm start` on this repo you will spin up Kue-Ui which will auto
 `kue-ui` is released under the MIT license. See LICENSE.txt for the complete text.
 
 ### Contributors
-
-* [Arnaud Benard](//github.com/arnaudbenard)
-* [Peter Kadlot](//github.com/daralthus)
-* [Alex Loizou](//github.com/alexloi)
+* [Alex Loizou](https://github.com/alexloi)
+* [Arnaud Benard](https://github.com/arnaudbenard)
+* [Chris Manson](https://github.com/mansona)
+* [Peter Kadlot](https://github.com/daralthus)
