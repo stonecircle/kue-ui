@@ -9,15 +9,12 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: {
       enabled: isProductionLikeBuild,
-      prepend: 'https://s3-eu-west-1.amazonaws.com/nmcn-website-assets/'
     },
   });
 
   app.import('app/styles/reset.css');
   app.import('app/styles/alert.css');
   app.import('bower_components/perfect-scrollbar/css/perfect-scrollbar.css');
-  app.import('bower_components/jquery-jsonview/dist/jquery.jsonview.css');
-  app.import('bower_components/jquery-jsonview/dist/jquery.jsonview.js');
   app.import('bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.js');
 
   // Use `app.import` to add additional libraries to the generated

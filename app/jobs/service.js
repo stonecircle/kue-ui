@@ -24,6 +24,7 @@ export default Ember.Service.extend({
         if (Ember.get(window, '__kueUiExpress.authmaker')) {
           this.get('session').invalidate();
         }
+        resolve({});
       }
     })
     .then((headers) => {
@@ -77,7 +78,7 @@ export default Ember.Service.extend({
           url = `${config.apiURL}/jobs/${opts.state}/${from}..${to}`;
       }
 
-      if (opts.order) url += `/${opts.order}?`;
+      if (opts.order) { url += `/${opts.order}?`; }
 
       return this.request({
           data: opts.data || {},
