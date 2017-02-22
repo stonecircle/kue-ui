@@ -10,7 +10,7 @@
         <button class="btn-more" {{action "goToJob" job}}>More</button>
     </div>
     <div class="console">
-        <pre>{{ember-json-pretty jsonObj=job}}</pre>
+        <pre>{{json-pretty data=job}}</pre>
     </div>
     {{#if job.error}}
     <div class="error">

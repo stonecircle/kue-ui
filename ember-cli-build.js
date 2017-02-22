@@ -14,7 +14,11 @@ module.exports = function(defaults) {
 
   app.import('app/styles/reset.css');
   app.import('app/styles/alert.css');
+  app.import('app/styles/jquery.jsonview.css');
   app.import('bower_components/perfect-scrollbar/css/perfect-scrollbar.css');
+  // disabled until https://github.com/yesmeck/jquery-jsonview/issues/26 is fixed
+  // app.import('bower_components/jquery-jsonview/dist/jquery.jsonview.css');
+  app.import('bower_components/jquery-jsonview/dist/jquery.jsonview.js');
   app.import('bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.js');
 
   // Use `app.import` to add additional libraries to the generated
