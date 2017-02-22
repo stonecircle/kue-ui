@@ -1,0 +1,8 @@
+{
+  "name": "kue-ui-client",
+  "dependencies": {
+    "jquery-jsonview": "~1.2.3",
+    "perfect-scrollbar": "~0.6.1",
+    "font-awesome": "^4.7.0"
+  }
+}

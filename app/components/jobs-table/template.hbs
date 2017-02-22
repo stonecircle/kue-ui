@@ -1,0 +1,25 @@
+<div class="table jobs">
+  <div class="heading">
+      <div class="col col-id">
+        id
+        {{toggle-arrow value=order action="toggleArrow"}}
+        </div>
+      <div class="col">type</div>
+      <div class="col">state</div>
+      <div class="col">created_at</div>
+      <div class="col">updated_at</div>
+      <div class="col">attempts</div>
+  </div>
+    {{#each jobs as |job|}}
+      <div class="table-row job {{if job.active 'active'}}" {{action "showDetail" job}}>
+        <div class="col">{{job.id}}</div>
+        <div class="col">{{job.type}}</div>
+        <div class="col">{{job.state}}</div>
+        <div class="col">{{moment-format job.created_at "DD/MM/YYYY HH:mm:ss" "x"}}</div>
+        <div class="col">{{moment-format job.updated_at "DD/MM/YYYY HH:mm:ss" "x"}}</div>
+        <div class="col">{{job.attempts.made}} ({{job.attempts.remaining}}) </div>
+      </div>
+      {{else}}
+        <div class="empty">No results</div>
+    {{/each}}
+</div>
