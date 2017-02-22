@@ -1,7 +1,4 @@
 <div class="menu-list">
-  {{#link-to 'history' class="item"}}
-    Job History
-  {{/link-to}}
   {{#each jobStates as |s|}}
     {{#link-to 'jobs.state' s.state class="item"}}
       {{s.state}} <span class="item-count">{{s.count}}</span>
