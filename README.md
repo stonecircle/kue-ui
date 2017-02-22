@@ -66,7 +66,7 @@ An example is provided in `example/many.js`. Run it alongside redis (`redis-serv
 
     $ node example/many.js
 
-The app is now accessible on `localhost:3000/kue/`.
+The app is now accessible on `localhost:3000/test/`.
 
 You can modify the app in `lib/client/app` and build it with `grunt build`.
 
