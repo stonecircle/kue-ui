@@ -4,7 +4,9 @@ import request from 'ember-ajax/request';
 import config from '../config/environment';
 import Job from '../models/job-non-model';
 
-export default Ember.Service.extend({
+const { Service, get } = Ember;
+
+export default Service.extend({
 
   ajax: Ember.inject.service(),
   session: Ember.inject.service(),
@@ -28,7 +30,7 @@ export default Ember.Service.extend({
       }
     })
     .then((headers) => {
-      return request(opts.url, {
+      return request(`${get(window, '__kueUiExpress.apiURL') || config.apiURL}/${opts.url}`, {
         method: opts.method,
         data: opts.data,
         headers: headers,
@@ -50,9 +52,9 @@ export default Ember.Service.extend({
       var url = '';
 
       if (!Ember.isEmpty(type) && !Ember.isEmpty(state)) {
-          url = `${config.apiURL}/jobs/${type}/${state}/stats`;
+          url = `jobs/${type}/${state}/stats`;
       } else {
-          url = `${config.apiURL}/stats`;
+          url = `stats`;
       }
 
       var session = this.get('session');
@@ -71,11 +73,11 @@ export default Ember.Service.extend({
       var url = `${config.apiURL}/${from}..${to}`;
 
       if(opts.type && opts.state) {
-          url = `${config.apiURL}/jobs/${opts.type}/${opts.state}/${from}..${to}`;
+          url = `jobs/${opts.type}/${opts.state}/${from}..${to}`;
       } else if(opts.type) {
-          url = `${config.apiURL}/jobs/${opts.type}/${from}..${to}`;
+          url = `jobs/${opts.type}/${from}..${to}`;
       } else if(opts.state) {
-          url = `${config.apiURL}/jobs/${opts.state}/${from}..${to}`;
+          url = `jobs/${opts.state}/${from}..${to}`;
       }
 
       if (opts.order) { url += `/${opts.order}?`; }
@@ -97,7 +99,7 @@ export default Ember.Service.extend({
   updateState(id, state) {
       return this.request({
           method: 'PUT',
-          url: `${config.apiURL}/job/${id}/state/${state}`
+          url: `job/${id}/state/${state}`
       })
       .then(function(job) {
           return job;
@@ -110,7 +112,7 @@ export default Ember.Service.extend({
   findOne(opts={}) {
       return this.request({
           method: 'GET',
-          url: `${config.apiURL}/job/${opts.id}`
+          url: `job/${opts.id}`
       })
       .then(function(result){
         return Job.create(result);
@@ -120,7 +122,7 @@ export default Ember.Service.extend({
   types() {
       return this.request({
           method: 'GET',
-          url: `${config.apiURL}/job/types/`
+          url: `job/types/`
       });
   },
 
@@ -128,7 +130,7 @@ export default Ember.Service.extend({
     var id = job.get('id');
     return this.request({
       method: 'DELETE',
-      url: `${config.apiURL}/job/${id}/`
+      url: `job/${id}/`
     })
     .catch((err) => {
       console.warn('Job remove error', err);
