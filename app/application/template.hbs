@@ -3,9 +3,37 @@
   <div class="menu">
     <div class="logo">{{#link-to "jobs.index"}} kue {{/link-to}}</div>
     <div class="input-search">
-      {{input value=jobId placeholder="id" class="input" enter="goToJobRoute"}}
+      {{input value=jobId placeholder="Find Job By Id" class="input" enter=(transition-to 'jobs.show' jobId)}}
     </div>
     {{menu-tabs stats=stats breakdowns=breakdowns stateParam=state typeParam=type action="goToTypeRoute"}}
   </div>
   {{outlet}}
 </div>
+
+{{#if showAddDialog}}
+  {{#paper-dialog class="new-job-dialog" clickOutsideToClose=true onClose='closeAddDialog'}}
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Create Job</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick='closeAddDialog'}}{{paper-icon icon="close"}}{{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+    {{#paper-dialog-content}}
+    {{paper-input textarea=true
+      block=true
+      label="New Job Body"
+      value=newJobBody
+      passThru=(hash rows=5 maxRows=5)
+      onChange=(action (mut newJobBody))}}
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button primary=true onClick=(action 'createJob')}}Create{{/paper-button}}
+    {{/paper-dialog-actions}}
+
+  {{/paper-dialog}}
+{{/if}}
+
+{{#paper-button class="bottom-right" raised=true primary=true fab=true onClick=(toggle 'showAddDialog' this)}}{{paper-icon "add"}}{{/paper-button}}
