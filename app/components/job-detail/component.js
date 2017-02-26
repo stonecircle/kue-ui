@@ -9,7 +9,9 @@ export default Ember.Component.extend({
     }).observes('job.id'),
 
     selectedStateDidChange: Ember.observer('job.selected', function() {
-        if (Ember.isEmpty(this.get('job.state'))) return;
+        if (Ember.isEmpty(this.get('job.state'))) {
+          return;
+        }
 
         if (this.get('job.state') !== this.get('job.selected')) {
             this.set('job.state', this.get('job.selected'));

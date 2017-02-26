@@ -12,9 +12,6 @@ module.exports = function(defaults) {
     },
   });
 
-  app.import('app/styles/reset.css');
-  app.import('app/styles/alert.css');
-  app.import('app/styles/jquery.jsonview.css');
   app.import('bower_components/perfect-scrollbar/css/perfect-scrollbar.css');
   // disabled until https://github.com/yesmeck/jquery-jsonview/issues/26 is fixed
   // app.import('bower_components/jquery-jsonview/dist/jquery.jsonview.css');

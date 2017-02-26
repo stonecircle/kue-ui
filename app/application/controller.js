@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
 
     jobId: '',
     jobs: Ember.inject.service(),
+    notifications: Ember.inject.service('notification-messages'),
 
     initStatsRefresh: Ember.on('init', function() {
         var self = this;
@@ -50,15 +51,29 @@ export default Ember.Controller.extend({
     },
 
     actions: {
-        goToTypeRoute(obj) {
-            this.transitionToRoute('jobs.type', obj.type, {queryParams:
-                {state: obj.state || 'active'}
-            });
-        },
-
-        goToJobRoute() {
-            this.transitionToRoute('jobs.show', this.get('jobId'));
-        }
+      goToTypeRoute(obj) {
+        this.transitionToRoute('jobs.type', obj.type, {
+          queryParams: {
+            state: obj.state || 'active'
+          }
+        });
+      },
+      closeAddDialog() {
+        this.set('newJobBody', '');
+        this.set('showAddDialog', false);
+      },
+      createJob() {
+        this.get('jobs').create(this.get('newJobBody')).then(() => {
+          this.get('notifications').success('Job Created Successfully', {
+            autoClear: true,
+          });
+          this.set('newJobBody', '');
+          this.set('showAddDialog', false);
+        }, (err) => {
+          console.log(err);
+          this.get('notifications').error(`Error creating job: ${err.messsage}`);
+        });
+      }
     }
 
 });

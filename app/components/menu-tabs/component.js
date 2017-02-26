@@ -21,7 +21,11 @@ export default Ember.Component.extend({
     jobStates: Ember.computed('stats', 'stats.[]', function() {
         var states = Ember.A(this.get('jobs.STATES'));
         var stats = this.get('stats');
-        if(Ember.isEmpty(stats)) return;
+
+        if(Ember.isEmpty(stats)) {
+          return;
+        }
+
         return states.map(function(state) {
             return {
                 state: state,

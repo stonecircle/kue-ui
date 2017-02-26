@@ -1,0 +1,9 @@
+.bottom-right {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+
+.new-job-dialog {
+  min-width: 40%;
+}

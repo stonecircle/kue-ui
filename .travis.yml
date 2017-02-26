@@ -1,9 +1,12 @@
 ---
 language: node_js
 node_js:
-  - "4"
+  - 6
 
 sudo: false
+branches:
+  only:
+    - "master"
 
 cache:
   directories:
@@ -17,8 +20,8 @@ before_install:
   - phantomjs --version
 
 install:
-  - npm install
   - bower install
+  - npm install
 
 script:
   - npm test

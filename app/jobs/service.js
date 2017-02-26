@@ -34,6 +34,7 @@ export default Service.extend({
         method: opts.method,
         data: opts.data,
         headers: headers,
+        contentType: opts.contentType,
       })
       .then(null, (err) => {
         if (Ember.get(err, 'errors.0.status') === '401') {
@@ -57,11 +58,9 @@ export default Service.extend({
           url = `stats`;
       }
 
-      var session = this.get('session');
-
       return this.request({
         url,
-      })
+      });
   },
 
   find(opts={}) {
@@ -136,6 +135,15 @@ export default Service.extend({
       console.warn('Job remove error', err);
       this.get('notifications').error(`Error removing Job: ${err.message}`);
       throw err;
+    });
+  },
+
+  create(jobBody) {
+    return this.request({
+      method: 'POST',
+      url: 'job',
+      data: jobBody,
+      contentType: 'application/json'
     });
   }
 });
