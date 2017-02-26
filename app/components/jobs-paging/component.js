@@ -10,7 +10,9 @@ export default Ember.Component.extend({
         },
 
         previous() {
-            if(this.get('page') > 1) this.decrementProperty('page');
+            if(this.get('page') > 1) {
+              this.decrementProperty('page');
+            }
         }
     }
 

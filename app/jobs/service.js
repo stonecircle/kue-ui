@@ -58,11 +58,9 @@ export default Service.extend({
           url = `stats`;
       }
 
-      var session = this.get('session');
-
       return this.request({
         url,
-      })
+      });
   },
 
   find(opts={}) {

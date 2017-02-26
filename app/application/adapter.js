@@ -6,6 +6,6 @@ import config from '../config/environment';
 
 const { get } = Ember;
 
-export default DS.JSONAPIAdapter.extend({
+export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: `${get(window, '__kueUiExpress.apiURL') || config.apiURL}/v2`,
 });
