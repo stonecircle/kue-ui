@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
     order: 'asc',
 
   jobs: Ember.inject.service(),
-
+  notifications: Ember.inject.service('notification-messages'),
   actions: {
     removeJob(job) {
       this.get('jobs').remove(job).then(() => {
