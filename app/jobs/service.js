@@ -53,7 +53,7 @@ export default Service.extend({
       var url = '';
 
       if (!Ember.isEmpty(type) && !Ember.isEmpty(state)) {
-          url = `jobs/${type}/${state}/stats`;
+          url = `jobs/${encodeURIComponent(type)}/${state}/stats`;
       } else {
           url = `stats`;
       }
@@ -72,9 +72,9 @@ export default Service.extend({
       var url = `${config.apiURL}/${from}..${to}`;
 
       if(opts.type && opts.state) {
-          url = `jobs/${opts.type}/${opts.state}/${from}..${to}`;
+          url = `jobs/${encodeURIComponent(opts.type)}/${opts.state}/${from}..${to}`;
       } else if(opts.type) {
-          url = `jobs/${opts.type}/${from}..${to}`;
+          url = `jobs/${encodeURIComponent(opts.type)}/${from}..${to}`;
       } else if(opts.state) {
           url = `jobs/${opts.state}/${from}..${to}`;
       }
