@@ -24,7 +24,7 @@ export default Controller.extend({
 
     updateStats() {
         var self = this;
-        this.get('jobs').stats().then(function(data) {
+        this.jobs.stats().then(function(data) {
             self.set('stats', data);
             return self.getCountBreakdowns();
         })
@@ -37,16 +37,16 @@ export default Controller.extend({
     getAllStates(type) {
         var promises = this.get('jobs.STATES').map((state) => {
             var query = { type: type, state: state };
-            return this.get('jobs').stats(query).then( res => _.extend(res, query) );
+            return this.jobs.stats(query).then( res => _.extend(res, query) );
         });
         return Promise.all(promises);
     },
 
     getCountBreakdowns() {
-        return this.get('jobs').stats().then((stats) => {
-            return this.get('indexController').set('stats', stats);
+        return this.jobs.stats().then((stats) => {
+            return this.indexController.set('stats', stats);
         })
-        .then(() => this.get('jobs').types())
+        .then(() => this.jobs.types())
         .then((types) => {
             var promises = types.map(type =>  this.getAllStates(type));
             return Promise.all(promises).then(_.flatten);
@@ -66,8 +66,8 @@ export default Controller.extend({
         this.set('showAddDialog', false);
       },
       createJob() {
-        this.get('jobs').create(this.get('newJobBody')).then(() => {
-          this.get('notifications').success('Job Created Successfully', {
+        this.jobs.create(this.newJobBody).then(() => {
+          this.notifications.success('Job Created Successfully', {
             autoClear: true,
           });
           this.set('newJobBody', '');
@@ -75,7 +75,7 @@ export default Controller.extend({
         }, (err) => {
           // eslint-disable-next-line no-console
           console.log(err);
-          this.get('notifications').error(`Error creating job: ${err.messsage}`);
+          this.notifications.error(`Error creating job: ${err.messsage}`);
         });
       }
     }

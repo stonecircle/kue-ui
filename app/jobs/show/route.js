@@ -5,7 +5,7 @@ export default Route.extend({
   jobs: service(),
 
   model(params) {
-    return this.get('jobs').findOne({
+    return this.jobs.findOne({
       id: params.id
     });
   }

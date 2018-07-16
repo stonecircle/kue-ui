@@ -7,8 +7,8 @@ export default Controller.extend({
 
   actions: {
     removeJob(job) {
-      this.get('jobs').remove(job).then(() => {
-        this.get('notifications').success('Job Deleted', {
+      this.jobs.remove(job).then(() => {
+        this.notifications.success('Job Deleted', {
           autoClear: true,
         });
       });

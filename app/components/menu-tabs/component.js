@@ -27,7 +27,7 @@ export default Component.extend({
 
     jobStates: computed('stats', 'stats.[]', function() {
         var states = A(this.get('jobs.STATES'));
-        var stats = this.get('stats');
+        var stats = this.stats;
 
         if(isEmpty(stats)) {
           return;
@@ -42,7 +42,7 @@ export default Component.extend({
     }),
 
     breakdownsDidLoad: observer('breakdowns', 'breakdowns.[]', function() {
-        var breakdowns = this.get('breakdowns');
+        var breakdowns = this.breakdowns;
         var byType = _.groupBy(breakdowns, 'type');
         var menu = [];
 
@@ -63,10 +63,10 @@ export default Component.extend({
 
     updateActiveState() {
         var selected = {
-            state: this.get('stateParam'),
-            type: this.get('typeParam'),
+            state: this.stateParam,
+            type: this.typeParam,
         };
-        var items = this.get('menuTree');
+        var items = this.menuTree;
 
         items.forEach(item => {
             set(item, 'active', item.type === selected.type);

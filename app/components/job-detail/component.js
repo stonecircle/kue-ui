@@ -21,7 +21,7 @@ export default Component.extend({
         if (this.get('job.state') !== this.get('job.selected')) {
             this.set('job.state', this.get('job.selected'));
 
-            this.get('jobs').updateState(this.get('job.id'), this.get('job.state'));
+            this.jobs.updateState(this.get('job.id'), this.get('job.state'));
         }
     }),
 

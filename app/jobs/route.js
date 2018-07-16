@@ -7,7 +7,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   session: service(),
   beforeModel(transition) {
     if (get(window, '__kueUiExpress.authmaker') && !this.get('session.isAuthenticated')) {
-      let authenticationRoute = this.get('authenticationRoute');
+      let authenticationRoute = this.authenticationRoute;
       this.set('session.attemptedTransition', transition);
       return this.transitionTo(authenticationRoute);
     }

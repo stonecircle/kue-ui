@@ -1,4 +1,6 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 import {
@@ -6,23 +8,24 @@ import {
   assertionCleanup
 } from '../../../assertions';
 
-moduleForComponent('jobs-table', 'Integration | Component | jobs table', {
-  integration: true,
-  beforeEach: function () {
+module('Integration | Component | jobs table', function(hooks) {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(function () {
     assertionInjector(this);
-  },
+  });
 
-  afterEach: function () {
+  hooks.afterEach(function () {
     assertionCleanup(this);
-  }
-});
+  });
 
-test('it renders', function(assert) {
+  test('it renders', async function(assert) {
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{jobs-table}}`);
+    await render(hbs`{{jobs-table}}`);
 
-  assert.contains(this.$(), 'No results');
+    assert.contains(this.$(), 'No results');
+  });
 });

@@ -19,14 +19,14 @@ export default Service.extend({
   request(opts={}) {
     return new Promise((resolve) => {
       if (this.get('session.isAuthenticated')) {
-        this.get('session').authorize('authorizer:application', (key, value) => {
+        this.session.authorize('authorizer:application', (key, value) => {
           resolve({
             [key]: value
           });
         });
       } else {
         if (get(window, '__kueUiExpress.authmaker')) {
-          this.get('session').invalidate();
+          this.session.invalidate();
         }
         resolve({});
       }
@@ -40,7 +40,7 @@ export default Service.extend({
       })
       .then(null, (err) => {
         if (get(err, 'errors.0.status') === '401') {
-          this.get('session').invalidate();
+          this.session.invalidate();
         }
 
         throw err;
@@ -131,7 +131,7 @@ export default Service.extend({
       url: `job/${id}/`
     })
     .catch((err) => {
-      this.get('notifications').error(`Error removing Job: ${err.message}`);
+      this.notifications.error(`Error removing Job: ${err.message}`);
       throw err;
     });
   },

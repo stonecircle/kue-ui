@@ -12,7 +12,7 @@ export default Route.extend({
     model(params) {
         this.controllerFor('jobs.type').set('type', params.type);
         this.controllerFor('application').set('type', params.type);
-        return this.get('jobs').find({
+        return this.jobs.find({
             type: params.type,
             state: params.state,
             page: params.page,

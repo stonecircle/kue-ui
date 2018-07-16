@@ -11,7 +11,7 @@ export default Route.extend({
     model(params) {
         this.controllerFor('application').set('type', null);
         this.controllerFor('application').set('state', params.id);
-        return this.get('jobs').find({
+        return this.jobs.find({
             state: params.id,
             page: params.page,
             order: params.order

@@ -1,5 +1,7 @@
 import Service from '@ember/service';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 import {
@@ -7,34 +9,35 @@ import {
   assertionCleanup
 } from '../../../assertions';
 
-moduleForComponent('/jobs-filter', 'Integration | Component | jobs filter', {
-  integration: true,
-  beforeEach: function () {
-    this.register('service:notification-messages', Service.extend({}));
+module('Integration | Component | jobs filter', function(hooks) {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(function () {
+    this.owner.register('service:notification-messages', Service.extend({}));
 
     assertionInjector(this);
-  },
+  });
 
-  afterEach: function () {
+  hooks.afterEach(function () {
     assertionCleanup(this);
-  }
-});
+  });
 
-test('it renders', function(assert) {
+  test('it renders', async function(assert) {
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{jobs-filter}}`);
+    await render(hbs`{{jobs-filter}}`);
 
-  assert.contains(this.$(), 'Previous');
+    assert.contains(this.$(), 'Previous');
 
-  // Template block usage:
-  this.render(hbs`
-    {{#jobs-filter}}
-      template block text
-    {{/jobs-filter}}
-  `);
+    // Template block usage:
+    await render(hbs`
+      {{#jobs-filter}}
+        template block text
+      {{/jobs-filter}}
+    `);
 
-  assert.contains(this.$(), '← Previous');
+    assert.contains(this.$(), '← Previous');
+  });
 });

@@ -5,7 +5,7 @@ import Component from '@ember/component';
 export default Component.extend({
 
     printJSON() {
-       var data = this.get('data');
+       var data = this.data;
         $("#json").JSONView(JSON.stringify(data));
     },
 

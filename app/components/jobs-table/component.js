@@ -9,7 +9,7 @@ export default Component.extend({
     actions: {
         showDetail(job) {
             this.set('selectedJob', job);
-            this.get('jobs').setEach('active', false);
+            this.jobs.setEach('active', false);
             job.set('active', true);
         },
 

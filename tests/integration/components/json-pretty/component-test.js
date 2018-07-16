@@ -1,18 +1,19 @@
-import { find } from '@ember/test-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { find, render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('json-pretty', 'Integration | Component | json pretty', {
-  integration: true
-});
+module('Integration | Component | json pretty', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
+  test('it renders', async function(assert) {
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-  this.set('data', {});
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('data', {});
 
-  this.render(hbs`{{json-pretty data=data}}`);
+    await render(hbs`{{json-pretty data=data}}`);
 
-  assert.equal(find('*').textContent.trim(), '{ }');
+    assert.dom('*').hasText('{ }');
+  });
 });

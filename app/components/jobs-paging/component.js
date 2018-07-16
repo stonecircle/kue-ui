@@ -10,7 +10,7 @@ export default Component.extend({
         },
 
         previous() {
-            if(this.get('page') > 1) {
+            if(this.page > 1) {
               this.decrementProperty('page');
             }
         }

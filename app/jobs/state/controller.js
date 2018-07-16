@@ -10,16 +10,16 @@ export default Controller.extend({
   notifications: service('notification-messages'),
   actions: {
     removeJob(job) {
-      this.get('jobs').remove(job).then(() => {
-        this.get('notifications').success('Job Deleted', {
+      this.jobs.remove(job).then(() => {
+        this.notifications.success('Job Deleted', {
           autoClear: true,
         });
-        this.get('model').removeObject(job);
+        this.model.removeObject(job);
       });
     },
 
         updateOrder() {
-            const order = this.get('order');
+            const order = this.order;
             this.set('order', order === 'asc' ? 'desc' : 'asc');
         }
   }
