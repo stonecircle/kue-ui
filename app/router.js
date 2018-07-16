@@ -11,7 +11,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('jobs', function() {
       this.route('type', { path: "type/:type" });
-      this.route('state', { path: "state/:id" });
+      this.route('state', { path: "state/:state" });
       this.route('show', { path: ":id" });
       this.route('new', { path: "/new" });
   });

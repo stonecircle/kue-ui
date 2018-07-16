@@ -6,7 +6,8 @@ export default Route.extend({
      queryParams: {
         page: { refreshModel: true },
         sort: { refreshModel: true },
-        state: { refreshModel: true }
+        state: { refreshModel: true },
+        size: { refreshModel: true }
     },
 
     model(params) {
@@ -16,7 +17,8 @@ export default Route.extend({
             type: params.type,
             state: params.state,
             page: params.page,
-            order: params.order
+            order: params.order,
+            size: params.size
         });
     },
 
@@ -24,5 +26,4 @@ export default Route.extend({
         this._super();
         window.scrollTo(0,0);
     }
-
 });

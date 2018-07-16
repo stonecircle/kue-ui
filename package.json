@@ -17,6 +17,7 @@
     "prepublishOnly": "rm -rf dist && ember build --environment=production"
   },
   "devDependencies": {
+    "@html-next/vertical-collection": "^1.0.0-beta.12",
     "authmaker-ember-simple-auth": "^2.2.1",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
@@ -60,7 +61,6 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "dependencies": {
-    "jquery-jsonview": "^1.2.3",
-    "perfect-scrollbar": "^1.4.0"
+    "jquery-jsonview": "^1.2.3"
   }
 }

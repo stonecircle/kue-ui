@@ -1,8 +1,5 @@
-/* global PerfectScrollbar */
-
 import { isEmpty } from '@ember/utils';
 import { observer, computed, set } from '@ember/object';
-import $ from 'jquery';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import Component from '@ember/component';
@@ -16,10 +13,6 @@ export default Component.extend({
     menuTree: Object.freeze([]),
 
     jobs: service(),
-
-    didInsertElement() {
-      new PerfectScrollbar($('.menu'));
-    },
 
     paramsDidChange: observer('typeParam', 'stateParam', 'menuTree', 'menuTree.[]', function(){
         this.updateActiveState();

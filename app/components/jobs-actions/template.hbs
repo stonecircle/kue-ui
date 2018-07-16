@@ -1,0 +1,10 @@
+<div class="job-detail">
+    <div class="title">
+        {{selectedJobs.length}} Jobs Selected
+    </div>
+    <div class="layout-column layout-align-center-center">
+      {{#if (gt selectedJobs.length 0)}}
+        {{#paper-button raised=true onClick=(action 'cancelSelected')}} Cancel Selected Jobs {{/paper-button}}
+      {{/if}}
+    </div>
+</div>

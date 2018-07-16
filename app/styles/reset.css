@@ -71,7 +71,6 @@ pre {
 }
 
 input[type="radio"] {vertical-align: text-bottom;}
-input[type="checkbox"] {vertical-align: bottom;}
 .ie7 input[type="checkbox"] {vertical-align: baseline;}
 .ie6 input {vertical-align: text-bottom;}
 
@@ -120,4 +119,3 @@ input[type=button] {width: auto; overflow: visible;}
 .clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
-

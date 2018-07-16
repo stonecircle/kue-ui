@@ -57,7 +57,8 @@ export default Controller.extend({
       goToTypeRoute(obj) {
         this.transitionToRoute('jobs.type', obj.type, {
           queryParams: {
-            state: obj.state || 'active'
+            state: obj.state || 'active',
+            page: 1
           }
         });
       },

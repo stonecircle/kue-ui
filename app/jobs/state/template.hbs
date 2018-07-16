@@ -1,10 +1,11 @@
 <div class="route route-jobs-state">
-  {{jobs-table jobs=model selectedJob=selectedJob order=order orderAction="updateOrder"}}
+  {{jobs-table jobs=model order=order orderAction="updateOrder"}}
 
   <div class="panel-right">
-    {{#if selectedJob}}
-      {{job-detail job=selectedJob action="goToJob" removeAction="removeJob"}}
+    {{#if (eq selectedJobs.length 1)}}
+      {{job-detail job=selectedJobs.firstObject action="goToJob" removeAction="removeJob"}}
     {{else}}
+      {{jobs-actions selectedJobs=selectedJobs refresh=(action 'refresh')}}
     {{/if}}
   </div>
   {{jobs-paging page=page}}

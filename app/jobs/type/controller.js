@@ -1,15 +1,23 @@
+import Controller, { inject as controller} from '@ember/controller';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import Controller from '@ember/controller';
 
 export default Controller.extend({
-    queryParams: ['state', 'page', 'order'],
-    // query params will be a separate  value for every object implementing the mixin
-    state: 'active',
-    page: 1,
-    order: 'asc',
+  queryParams: ['state', 'page', 'order', 'size'],
+
+  state: 'active',
+  page: 1,
+  order: 'asc',
+  size: 20,
 
   jobs: service(),
   notifications: service('notification-messages'),
+  application: controller(),
+
+  selectedJobs: computed('model.@each.checked', function() {
+    return this.model.filter(job => job.checked);
+  }),
+
   actions: {
     removeJob(job) {
       this.jobs.remove(job).then(() => {
@@ -20,14 +28,19 @@ export default Controller.extend({
       });
     },
 
-        goToJob(job) {
-            this.transitionToRoute('jobs.show', job);
-        },
+    goToJob(job) {
+      this.transitionToRoute('jobs.show', job);
+    },
 
-        updateOrder() {
-            const order = this.order;
-            this.set('order', order === 'asc' ? 'desc' : 'asc');
-            this.set('page', 1);
-        }
+    updateOrder() {
+      const order = this.order;
+      this.set('order', order === 'asc' ? 'desc' : 'asc');
+      this.set('page', 1);
+    },
+    refresh() {
+      this.transitionToRoute('jobs.type', { queryParams: {
+        page: this.page + 1
+      }});
+    }
   }
 });
