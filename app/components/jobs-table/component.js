@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { gt } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
     selectedJob: null,
-    hasSelectedJob: Ember.computed.gt('selectedJob.id.length', 0),
+    hasSelectedJob: gt('selectedJob.id.length', 0),
     order: null,
 
     actions: {

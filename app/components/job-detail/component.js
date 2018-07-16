@@ -1,15 +1,20 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { observer } from '@ember/object';
+import { on } from '@ember/object/evented';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-    selections: Ember.computed.alias('jobs.STATES'),
-    jobs: Ember.inject.service(),
+export default Component.extend({
+    selections: alias('jobs.STATES'),
+    jobs: service(),
 
-    setup: Ember.on('init', function() {
+    setup: on('init', function() {
         this.set('job.selected', this.get('job.state'));
     }).observes('job.id'),
 
-    selectedStateDidChange: Ember.observer('job.selected', function() {
-        if (Ember.isEmpty(this.get('job.state'))) {
+    selectedStateDidChange: observer('job.selected', function() {
+        if (isEmpty(this.get('job.state'))) {
           return;
         }
 

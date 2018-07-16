@@ -1,21 +1,23 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { Promise } from 'rsvp';
+import { A, isArray } from '@ember/array';
+import Service, { inject as service } from '@ember/service';
+import { get } from '@ember/object';
 import request from 'ember-ajax/request';
 
 import config from '../config/environment';
 import Job from '../models/job-non-model';
 
-const { Service, get } = Ember;
-
 export default Service.extend({
 
-  ajax: Ember.inject.service(),
-  session: Ember.inject.service(),
-  notifications: Ember.inject.service('notification-messages'),
+  ajax: service(),
+  session: service(),
+  notifications: service('notification-messages'),
 
-  STATES: Ember.A(['active', 'complete', 'delayed', 'failed', 'inactive']),
+  STATES: A(['active', 'complete', 'delayed', 'failed', 'inactive']),
 
   request(opts={}) {
-    return new Ember.RSVP.Promise((resolve) => {
+    return new Promise((resolve) => {
       if (this.get('session.isAuthenticated')) {
         this.get('session').authorize('authorizer:application', (key, value) => {
           resolve({
@@ -23,7 +25,7 @@ export default Service.extend({
           });
         });
       } else {
-        if (Ember.get(window, '__kueUiExpress.authmaker')) {
+        if (get(window, '__kueUiExpress.authmaker')) {
           this.get('session').invalidate();
         }
         resolve({});
@@ -37,7 +39,7 @@ export default Service.extend({
         contentType: opts.contentType,
       })
       .then(null, (err) => {
-        if (Ember.get(err, 'errors.0.status') === '401') {
+        if (get(err, 'errors.0.status') === '401') {
           this.get('session').invalidate();
         }
 
@@ -52,7 +54,7 @@ export default Service.extend({
       var state = opts.state;
       var url = '';
 
-      if (!Ember.isEmpty(type) && !Ember.isEmpty(state)) {
+      if (!isEmpty(type) && !isEmpty(state)) {
           url = `jobs/${type}/${state}/stats`;
       } else {
           url = `stats`;
@@ -87,7 +89,7 @@ export default Service.extend({
           url: url
       })
       .then( data => {
-          if (Ember.isArray(data)) {
+          if (isArray(data)) {
               return data.map( obj => Job.create(obj) );
           } else {
               return Job.create(data);

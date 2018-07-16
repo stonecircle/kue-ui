@@ -1,5 +1,6 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-    breakdowns: Ember.A([]),
+export default Controller.extend({
+    breakdowns: A([]),
 });

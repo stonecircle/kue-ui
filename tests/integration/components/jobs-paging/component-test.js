@@ -1,7 +1,10 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { assertionInjector, assertionCleanup } from '../../../assertions';
+import {
+  assertionInjector,
+  assertionCleanup
+} from '../../../assertions';
 
 moduleForComponent('jobs-paging', 'Integration | Component | jobs paging', {
   integration: true,

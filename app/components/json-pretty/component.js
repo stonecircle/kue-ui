@@ -1,17 +1,19 @@
-import Ember from 'ember';
+import { observer } from '@ember/object';
+import $ from 'jquery';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
     printJSON() {
        var data = this.get('data');
-        Ember.$("#json").JSONView(JSON.stringify(data));
+        $("#json").JSONView(JSON.stringify(data));
     },
 
     didInsertElement() {
         this.printJSON();
     },
 
-    jobDidChange: Ember.observer('data', function() {
+    jobDidChange: observer('data', function() {
         this.printJSON();
     })
 });

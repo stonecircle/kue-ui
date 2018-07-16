@@ -1,16 +1,19 @@
-import Ember from 'ember';
+import { Promise } from 'rsvp';
+import { on } from '@ember/object/evented';
+import { inject as service } from '@ember/service';
+import Controller, { inject as controller } from '@ember/controller';
 import _ from 'lodash';
 
 import ENV from '../config/environment';
 
-export default Ember.Controller.extend({
-    indexController: Ember.inject.controller('jobs/index'),
+export default Controller.extend({
+    indexController: controller('jobs/index'),
 
     jobId: '',
-    jobs: Ember.inject.service(),
-    notifications: Ember.inject.service('notification-messages'),
+    jobs: service(),
+    notifications: service('notification-messages'),
 
-    initStatsRefresh: Ember.on('init', function() {
+    initStatsRefresh: on('init', function() {
         var self = this;
         self.updateStats(); // first call
 
@@ -36,7 +39,7 @@ export default Ember.Controller.extend({
             var query = { type: type, state: state };
             return this.get('jobs').stats(query).then( res => _.extend(res, query) );
         });
-        return Ember.RSVP.Promise.all(promises);
+        return Promise.all(promises);
     },
 
     getCountBreakdowns() {
@@ -46,7 +49,7 @@ export default Ember.Controller.extend({
         .then(() => this.get('jobs').types())
         .then((types) => {
             var promises = types.map(type =>  this.getAllStates(type));
-            return Ember.RSVP.Promise.all(promises).then(_.flatten);
+            return Promise.all(promises).then(_.flatten);
         });
     },
 

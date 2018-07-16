@@ -1,28 +1,34 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { observer, computed, set } from '@ember/object';
+import $ from 'jquery';
+import { on } from '@ember/object/evented';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import Component from '@ember/component';
 
 import _ from 'lodash';
 
-export default Ember.Component.extend({
-    breakdowns: Ember.A([]),
+export default Component.extend({
+    breakdowns: A([]),
     selected: null,
     items: null,
     menuTree: [],
 
-    jobs: Ember.inject.service(),
+    jobs: service(),
 
-    setScroll: Ember.on('didInsertElement', function() {
-      new PerfectScrollbar(Ember.$('.menu'));
+    setScroll: on('didInsertElement', function() {
+      new PerfectScrollbar($('.menu'));
     }),
 
-    paramsDidChange: Ember.observer('typeParam', 'stateParam', 'menuTree', 'menuTree.[]', function(){
+    paramsDidChange: observer('typeParam', 'stateParam', 'menuTree', 'menuTree.[]', function(){
         this.updateActiveState();
     }),
 
-    jobStates: Ember.computed('stats', 'stats.[]', function() {
-        var states = Ember.A(this.get('jobs.STATES'));
+    jobStates: computed('stats', 'stats.[]', function() {
+        var states = A(this.get('jobs.STATES'));
         var stats = this.get('stats');
 
-        if(Ember.isEmpty(stats)) {
+        if(isEmpty(stats)) {
           return;
         }
 
@@ -34,7 +40,7 @@ export default Ember.Component.extend({
         });
     }),
 
-    breakdownsDidLoad: Ember.observer('breakdowns', 'breakdowns.[]', function() {
+    breakdownsDidLoad: observer('breakdowns', 'breakdowns.[]', function() {
         var breakdowns = this.get('breakdowns');
         var byType = _.groupBy(breakdowns, 'type');
         var menu = [];
@@ -62,10 +68,10 @@ export default Ember.Component.extend({
         var items = this.get('menuTree');
 
         items.forEach(item => {
-            Ember.set(item, 'active', item.type === selected.type);
+            set(item, 'active', item.type === selected.type);
             item.subItems.forEach(sub => {
-                Ember.set(sub, 'active',  sub.state === selected.state && sub.type === selected.type);
-                Ember.set(sub, 'hide', !item.active);
+                set(sub, 'active',  sub.state === selected.state && sub.type === selected.type);
+                set(sub, 'hide', !item.active);
             });
             return item;
         });

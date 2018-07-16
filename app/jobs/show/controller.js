@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  jobs: Ember.inject.service(),
-  notifications: Ember.inject.service('notification-messages'),
+export default Controller.extend({
+  jobs: service(),
+  notifications: service('notification-messages'),
 
   actions: {
     removeJob(job) {

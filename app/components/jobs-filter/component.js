@@ -1,12 +1,15 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-    selections: Ember.computed.alias('jobs.STATES'),
-    jobs: Ember.inject.service(),
+export default Component.extend({
+    selections: alias('jobs.STATES'),
+    jobs: service(),
 
     selectedState: null,
 
-    sorts: Ember.A(['created_at', 'updated_at']),
+    sorts: A(['created_at', 'updated_at']),
     selectedSort: null,
 
 });

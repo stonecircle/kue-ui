@@ -1,13 +1,16 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { assertionInjector, assertionCleanup } from '../../../assertions';
+import {
+  assertionInjector,
+  assertionCleanup
+} from '../../../assertions';
 
 moduleForComponent('/jobs-filter', 'Integration | Component | jobs filter', {
   integration: true,
   beforeEach: function () {
-    this.register('service:notification-messages', Ember.Service.extend({}));
+    this.register('service:notification-messages', Service.extend({}));
 
     assertionInjector(this);
   },
