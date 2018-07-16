@@ -11,7 +11,7 @@ export default Ember.Component.extend({
     jobs: Ember.inject.service(),
 
     setScroll: Ember.on('didInsertElement', function() {
-        Ember.$('.menu').perfectScrollbar();
+      new PerfectScrollbar(Ember.$('.menu'));
     }),
 
     paramsDidChange: Ember.observer('typeParam', 'stateParam', 'menuTree', 'menuTree.[]', function(){

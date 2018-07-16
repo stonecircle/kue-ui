@@ -1,9 +1,14 @@
 ---
 language: node_js
 node_js:
-  - 6
+  - "6"
 
 sudo: false
+dist: trusty
+
+addons:
+  chrome: stable
+
 branches:
   only:
     - "master"
@@ -11,17 +16,15 @@ branches:
 cache:
   directories:
     - $HOME/.npm
-    - $HOME/.cache # includes bowers cache
+
+env:
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
 
 before_install:
   - npm config set spin false
-  - npm install -g bower phantomjs-prebuilt
-  - bower --version
-  - phantomjs --version
-
-install:
-  - bower install
-  - npm install
 
 script:
+  - npm run lint:js
   - npm test
