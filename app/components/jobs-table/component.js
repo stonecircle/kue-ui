@@ -14,7 +14,8 @@ export default Component.extend({
         },
 
         toggleArrow() {
-            this.sendAction('orderAction');
+          // eslint-disable-next-line ember/closure-actions
+          this.sendAction('orderAction');
         }
     }
 });

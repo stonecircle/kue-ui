@@ -7,6 +7,7 @@ export default Component.extend({
     up: equal('value', 'asc'),
 
     click() {
-        this.sendAction('action');
+      // eslint-disable-next-line ember/closure-actions
+      this.sendAction('action');
     }
 });

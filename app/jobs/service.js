@@ -70,7 +70,7 @@ export default Service.extend({
       var page = Number(opts.page) || 1;
       var from = (page - 1) * size;
       var to = page * size ;
-      console.log('find', opts);
+
       var url = `${config.apiURL}/${from}..${to}`;
 
       if(opts.type && opts.state) {
@@ -102,11 +102,8 @@ export default Service.extend({
           method: 'PUT',
           url: `job/${id}/state/${state}`
       })
-      .then(function(job) {
-          return job;
-      })
-      .catch(function(err) {
-          console.warn('Job state update error', err);
+      .catch((err) => {
+        this.notifications.error(`Job state update error ${err.message}`);
       });
   },
 
@@ -134,7 +131,6 @@ export default Service.extend({
       url: `job/${id}/`
     })
     .catch((err) => {
-      console.warn('Job remove error', err);
       this.get('notifications').error(`Error removing Job: ${err.message}`);
       throw err;
     });

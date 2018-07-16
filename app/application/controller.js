@@ -73,6 +73,7 @@ export default Controller.extend({
           this.set('newJobBody', '');
           this.set('showAddDialog', false);
         }, (err) => {
+          // eslint-disable-next-line no-console
           console.log(err);
           this.get('notifications').error(`Error creating job: ${err.messsage}`);
         });

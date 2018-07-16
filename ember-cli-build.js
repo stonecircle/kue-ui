@@ -13,8 +13,8 @@ module.exports = function(defaults) {
   app.import('node_modules/perfect-scrollbar/dist/perfect-scrollbar.js');
 
   // disabled until https://github.com/yesmeck/jquery-jsonview/issues/26 is fixed
-  // app.import('bower_components/jquery-jsonview/dist/jquery.jsonview.css');
-  app.import('bower_components/jquery-jsonview/dist/jquery.jsonview.js');
+  // app.import('node_modules/jquery-jsonview/dist/jquery.jsonview.css');
+  app.import('node_modules/jquery-jsonview/dist/jquery.jsonview.js');
 
   return app.toTree();
 };

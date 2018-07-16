@@ -25,14 +25,16 @@ export default Component.extend({
         }
     }),
 
-    actions: {
+  actions: {
+    goToJob(job) {
+      // eslint-disable-next-line ember/closure-actions
+      this.sendAction('action', job);
+    },
 
-        goToJob(job) {
-            this.sendAction('action', job);
-        },
-
-        removeJob(job) {
-            this.sendAction('removeAction', job);
-        }
-     }
+    removeJob(job) {
+      //TODO: use closure actions
+      // eslint-disable-next-line ember/closure-actions
+      this.sendAction('removeAction', job);
+    }
+  }
 });

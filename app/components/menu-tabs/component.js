@@ -1,7 +1,8 @@
+/* global PerfectScrollbar */
+
 import { isEmpty } from '@ember/utils';
 import { observer, computed, set } from '@ember/object';
 import $ from 'jquery';
-import { on } from '@ember/object/evented';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import Component from '@ember/component';
@@ -12,13 +13,13 @@ export default Component.extend({
     breakdowns: A([]),
     selected: null,
     items: null,
-    menuTree: [],
+    menuTree: Object.freeze([]),
 
     jobs: service(),
 
-    setScroll: on('didInsertElement', function() {
+    didInsertElement() {
       new PerfectScrollbar($('.menu'));
-    }),
+    },
 
     paramsDidChange: observer('typeParam', 'stateParam', 'menuTree', 'menuTree.[]', function(){
         this.updateActiveState();
@@ -82,6 +83,7 @@ export default Component.extend({
 
     actions: {
         goToItem(item) {
+          // eslint-disable-next-line ember/closure-actions
             this.sendAction("action", item);
         },
 
