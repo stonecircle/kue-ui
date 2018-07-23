@@ -10,6 +10,8 @@ export default Controller.extend({
   order: 'asc',
   size: 20,
 
+  sizes: Object.freeze([20, 50, 100, 200]),
+
   jobs: service(),
   notifications: service('notification-messages'),
   application: controller(),

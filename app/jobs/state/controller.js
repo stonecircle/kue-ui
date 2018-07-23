@@ -3,9 +3,12 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-  queryParams: ['page', 'order', 'forceUpdate'],
+  queryParams: ['page', 'order', 'forceUpdate', 'size'],
   page: 1,
   order: 'asc',
+  size: 20,
+
+  sizes: Object.freeze([20, 50, 100, 200]),
 
   jobs: service(),
   notifications: service('notification-messages'),

@@ -8,5 +8,18 @@
       {{jobs-actions selectedJobs=selectedJobs refresh=(action 'refresh')}}
     {{/if}}
   </div>
+
+  <div class="paging">
+    Show
+
+    {{#x-select value=size}}
+      {{#each sizes as |availableSize|}}
+        {{#x-option value=availableSize}}{{availableSize}}{{/x-option}}
+      {{/each}}
+    {{/x-select}}
+
+    Per page
+  </div>
+
   {{jobs-paging page=page}}
 </div>
