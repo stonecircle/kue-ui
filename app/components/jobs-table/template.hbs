@@ -1,6 +1,6 @@
 <table class="table jobs">
   <thead class="heading">
-    <div class="col">{{paper-checkbox value=allChecked onChange=(action 'checkAll')}}</div>
+    <div class="col" style="width: 60px">{{paper-checkbox value=allChecked onChange=(action 'checkAll')}}</div>
     <div class="col col-id">
       id
       {{toggle-arrow value=order action="toggleArrow"}}
@@ -17,7 +17,7 @@
     containerSelector="body"
     estimateHeight=400
      as |job|}}
-     <tr class="table-row job {{if job.checked 'active'}}">
+     <tr class="table-row job {{if job.checked 'active'}}" style="width: 60px">
        <td class="col">
          {{paper-checkbox value=job.checked onChange=(action (toggle 'checked' job))}}
        </td>
