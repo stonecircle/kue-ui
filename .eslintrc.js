@@ -24,7 +24,8 @@ module.exports = {
         'testem.js',
         'blueprints/*/index.js',
         'config/**/*.js',
-        'lib/*/index.js'
+        'lib/*/index.js',
+        'index.js'
       ],
       parserOptions: {
         sourceType: 'script',
