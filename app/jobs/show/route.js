@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  jobs: Ember.inject.service(),
+export default Route.extend({
+  jobs: service(),
 
   model(params) {
-    return this.get('jobs').findOne({
+    return this.jobs.findOne({
       id: params.id
     });
   }

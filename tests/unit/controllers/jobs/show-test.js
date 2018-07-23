@@ -1,15 +1,12 @@
-import {
-  moduleFor,
-  test
-} from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleFor('controller:jobs/show', 'JobsShowController', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-});
+module('JobsShowController', function(hooks) {
+  setupTest(hooks);
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
-  var controller = this.subject();
-  assert.ok(controller);
+  // Replace this with your real tests.
+  test('it exists', function(assert) {
+    var controller = this.owner.lookup('controller:jobs/show');
+    assert.ok(controller);
+  });
 });

@@ -1,19 +1,36 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
-export default Ember.Component.extend({
-    selectedJob: null,
-    hasSelectedJob: Ember.computed.gt('selectedJob.id.length', 0),
-    order: null,
+export default Component.extend({
+  order: null,
 
-    actions: {
-        showDetail(job) {
-            this.set('selectedJob', job);
-            this.get('jobs').setEach('active', false);
-            job.set('active', true);
-        },
+  allChecked: computed('jobs.@each.checked', function() {
+    let jobs = this.jobs || [];
 
-        toggleArrow() {
-            this.sendAction('orderAction');
-        }
+    if(!jobs.reduce) {
+      return false;
     }
+
+    return jobs.reduce((prev, job) => prev && job.checked, true);
+  }),
+
+  actions: {
+    toggleArrow() {
+      // eslint-disable-next-line ember/closure-actions
+      this.sendAction('orderAction');
+    },
+
+    checkAll() {
+      if (this.allChecked) {
+        this.jobs.forEach(job => job.set('checked', false))
+      } else {
+        this.jobs.forEach(job => job.set('checked', true))
+      }
+    },
+
+    checkOne(job) {
+      this.jobs.forEach(job => job.set('checked', false));
+      job.set('checked', true);
+    }
+  }
 });

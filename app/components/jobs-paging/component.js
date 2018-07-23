@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
     page: 1,
 
@@ -10,7 +10,7 @@ export default Ember.Component.extend({
         },
 
         previous() {
-            if(this.get('page') > 1) {
+            if(this.page > 1) {
               this.decrementProperty('page');
             }
         }

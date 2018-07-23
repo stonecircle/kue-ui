@@ -1,30 +1,32 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { Promise } from 'rsvp';
+import { A, isArray } from '@ember/array';
+import Service, { inject as service } from '@ember/service';
+import { get } from '@ember/object';
 import request from 'ember-ajax/request';
 
 import config from '../config/environment';
-import Job from '../models/job-non-model';
-
-const { Service, get } = Ember;
+import Job from '../classes/job-non-model';
 
 export default Service.extend({
 
-  ajax: Ember.inject.service(),
-  session: Ember.inject.service(),
-  notifications: Ember.inject.service('notification-messages'),
+  ajax: service(),
+  session: service(),
+  notifications: service('notification-messages'),
 
-  STATES: Ember.A(['active', 'complete', 'delayed', 'failed', 'inactive']),
+  STATES: A(['active', 'complete', 'delayed', 'failed', 'inactive']),
 
   request(opts={}) {
-    return new Ember.RSVP.Promise((resolve) => {
+    return new Promise((resolve) => {
       if (this.get('session.isAuthenticated')) {
-        this.get('session').authorize('authorizer:application', (key, value) => {
+        this.session.authorize('authorizer:application', (key, value) => {
           resolve({
             [key]: value
           });
         });
       } else {
-        if (Ember.get(window, '__kueUiExpress.authmaker')) {
-          this.get('session').invalidate();
+        if (get(window, '__kueUiExpress.authmaker')) {
+          this.session.invalidate();
         }
         resolve({});
       }
@@ -37,8 +39,8 @@ export default Service.extend({
         contentType: opts.contentType,
       })
       .then(null, (err) => {
-        if (Ember.get(err, 'errors.0.status') === '401') {
-          this.get('session').invalidate();
+        if (get(err, 'errors.0.status') === '401') {
+          this.session.invalidate();
         }
 
         throw err;
@@ -52,7 +54,7 @@ export default Service.extend({
       var state = opts.state;
       var url = '';
 
-      if (!Ember.isEmpty(type) && !Ember.isEmpty(state)) {
+      if (!isEmpty(type) && !isEmpty(state)) {
           url = `jobs/${type}/${state}/stats`;
       } else {
           url = `stats`;
@@ -68,7 +70,7 @@ export default Service.extend({
       var page = Number(opts.page) || 1;
       var from = (page - 1) * size;
       var to = page * size ;
-      console.log('find', opts);
+
       var url = `${config.apiURL}/${from}..${to}`;
 
       if(opts.type && opts.state) {
@@ -87,7 +89,7 @@ export default Service.extend({
           url: url
       })
       .then( data => {
-          if (Ember.isArray(data)) {
+          if (isArray(data)) {
               return data.map( obj => Job.create(obj) );
           } else {
               return Job.create(data);
@@ -100,11 +102,8 @@ export default Service.extend({
           method: 'PUT',
           url: `job/${id}/state/${state}`
       })
-      .then(function(job) {
-          return job;
-      })
-      .catch(function(err) {
-          console.warn('Job state update error', err);
+      .catch((err) => {
+        this.notifications.error(`Job state update error ${err.message}`);
       });
   },
 
@@ -132,8 +131,7 @@ export default Service.extend({
       url: `job/${id}/`
     })
     .catch((err) => {
-      console.warn('Job remove error', err);
-      this.get('notifications').error(`Error removing Job: ${err.message}`);
+      this.notifications.error(`Error removing Job: ${err.message}`);
       throw err;
     });
   },
@@ -144,6 +142,13 @@ export default Service.extend({
       url: 'job',
       data: jobBody,
       contentType: 'application/json'
+    });
+  },
+
+  getLog(job) {
+    return this.request({
+      method: 'GET',
+      url: `job/${job.id}/log`,
     });
   }
 });

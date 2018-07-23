@@ -1,28 +1,28 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { observer, computed, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import Component from '@ember/component';
 
 import _ from 'lodash';
 
-export default Ember.Component.extend({
-    breakdowns: Ember.A([]),
+export default Component.extend({
+    breakdowns: A([]),
     selected: null,
     items: null,
-    menuTree: [],
+    menuTree: Object.freeze([]),
 
-    jobs: Ember.inject.service(),
+    jobs: service(),
 
-    setScroll: Ember.on('didInsertElement', function() {
-        Ember.$('.menu').perfectScrollbar();
-    }),
-
-    paramsDidChange: Ember.observer('typeParam', 'stateParam', 'menuTree', 'menuTree.[]', function(){
+    paramsDidChange: observer('typeParam', 'stateParam', 'menuTree', 'menuTree.[]', function(){
         this.updateActiveState();
     }),
 
-    jobStates: Ember.computed('stats', 'stats.[]', function() {
-        var states = Ember.A(this.get('jobs.STATES'));
-        var stats = this.get('stats');
+    jobStates: computed('stats', 'stats.[]', function() {
+        var states = A(this.get('jobs.STATES'));
+        var stats = this.stats;
 
-        if(Ember.isEmpty(stats)) {
+        if(isEmpty(stats)) {
           return;
         }
 
@@ -34,8 +34,8 @@ export default Ember.Component.extend({
         });
     }),
 
-    breakdownsDidLoad: Ember.observer('breakdowns', 'breakdowns.[]', function() {
-        var breakdowns = this.get('breakdowns');
+    breakdownsDidLoad: observer('breakdowns', 'breakdowns.[]', function() {
+        var breakdowns = this.breakdowns;
         var byType = _.groupBy(breakdowns, 'type');
         var menu = [];
 
@@ -56,16 +56,16 @@ export default Ember.Component.extend({
 
     updateActiveState() {
         var selected = {
-            state: this.get('stateParam'),
-            type: this.get('typeParam'),
+            state: this.stateParam,
+            type: this.typeParam,
         };
-        var items = this.get('menuTree');
+        var items = this.menuTree;
 
         items.forEach(item => {
-            Ember.set(item, 'active', item.type === selected.type);
+            set(item, 'active', item.type === selected.type);
             item.subItems.forEach(sub => {
-                Ember.set(sub, 'active',  sub.state === selected.state && sub.type === selected.type);
-                Ember.set(sub, 'hide', !item.active);
+                set(sub, 'active',  sub.state === selected.state && sub.type === selected.type);
+                set(sub, 'hide', !item.active);
             });
             return item;
         });
@@ -76,6 +76,7 @@ export default Ember.Component.extend({
 
     actions: {
         goToItem(item) {
+          // eslint-disable-next-line ember/closure-actions
             this.sendAction("action", item);
         },
 

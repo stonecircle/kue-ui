@@ -1,11 +1,24 @@
 <div class="route route-jobs-type">
   {{#jobs-filter type=type selectedState=state page=page sort=sort}}
-    {{jobs-table jobs=model selectedJob=selectedJob order=order orderAction="updateOrder"}}
+    {{jobs-table jobs=model order=order orderAction="updateOrder"}}
+
+    <div class="paging">
+      Show
+
+      {{#x-select value=size}}
+        {{#each sizes as |availableSize|}}
+          {{#x-option value=availableSize}}{{availableSize}}{{/x-option}}
+        {{/each}}
+      {{/x-select}}
+
+      Per page
+    </div>
   {{/jobs-filter}}
   <div class="panel-right">
-    {{#if selectedJob}}
-      {{job-detail job=selectedJob action="goToJob" removeAction="removeJob"}}
+    {{#if (eq selectedJobs.length 1)}}
+      {{job-detail job=selectedJobs.firstObject action="goToJob" removeAction="removeJob"}}
     {{else}}
+      {{jobs-actions selectedJobs=selectedJobs refresh=(action 'refresh')}}
     {{/if}}
   </div>
 </div>

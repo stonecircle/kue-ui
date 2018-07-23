@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { getWithDefault } from '@ember/object';
 import AuthmakerLoginRoute from 'authmaker-ember-simple-auth/mixins/login-route';
 import Config from '../config/environment';
 
-const { Route, get } = Ember;
-
 export default Route.extend(AuthmakerLoginRoute, {
-  config: get(window, '__kueUiExpress.authmaker') || Config.authMaker,
+  config: getWithDefault(window, '__kueUiExpress.authmaker', Config.authMaker),
 });

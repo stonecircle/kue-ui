@@ -1,16 +1,19 @@
-import Ember from 'ember';
+import { Promise } from 'rsvp';
+import { on } from '@ember/object/evented';
+import { inject as service } from '@ember/service';
+import Controller, { inject as controller } from '@ember/controller';
 import _ from 'lodash';
 
 import ENV from '../config/environment';
 
-export default Ember.Controller.extend({
-    indexController: Ember.inject.controller('jobs/index'),
+export default Controller.extend({
+    indexController: controller('jobs/index'),
 
     jobId: '',
-    jobs: Ember.inject.service(),
-    notifications: Ember.inject.service('notification-messages'),
+    jobs: service(),
+    notifications: service('notification-messages'),
 
-    initStatsRefresh: Ember.on('init', function() {
+    initStatsRefresh: on('init', function() {
         var self = this;
         self.updateStats(); // first call
 
@@ -21,7 +24,7 @@ export default Ember.Controller.extend({
 
     updateStats() {
         var self = this;
-        this.get('jobs').stats().then(function(data) {
+        this.jobs.stats().then(function(data) {
             self.set('stats', data);
             return self.getCountBreakdowns();
         })
@@ -34,19 +37,19 @@ export default Ember.Controller.extend({
     getAllStates(type) {
         var promises = this.get('jobs.STATES').map((state) => {
             var query = { type: type, state: state };
-            return this.get('jobs').stats(query).then( res => _.extend(res, query) );
+            return this.jobs.stats(query).then( res => _.extend(res, query) );
         });
-        return Ember.RSVP.Promise.all(promises);
+        return Promise.all(promises);
     },
 
     getCountBreakdowns() {
-        return this.get('jobs').stats().then((stats) => {
-            return this.get('indexController').set('stats', stats);
+        return this.jobs.stats().then((stats) => {
+            return this.indexController.set('stats', stats);
         })
-        .then(() => this.get('jobs').types())
+        .then(() => this.jobs.types())
         .then((types) => {
             var promises = types.map(type =>  this.getAllStates(type));
-            return Ember.RSVP.Promise.all(promises).then(_.flatten);
+            return Promise.all(promises).then(_.flatten);
         });
     },
 
@@ -54,7 +57,8 @@ export default Ember.Controller.extend({
       goToTypeRoute(obj) {
         this.transitionToRoute('jobs.type', obj.type, {
           queryParams: {
-            state: obj.state || 'active'
+            state: obj.state || 'active',
+            page: 1
           }
         });
       },
@@ -63,15 +67,16 @@ export default Ember.Controller.extend({
         this.set('showAddDialog', false);
       },
       createJob() {
-        this.get('jobs').create(this.get('newJobBody')).then(() => {
-          this.get('notifications').success('Job Created Successfully', {
+        this.jobs.create(this.newJobBody).then(() => {
+          this.notifications.success('Job Created Successfully', {
             autoClear: true,
           });
           this.set('newJobBody', '');
           this.set('showAddDialog', false);
         }, (err) => {
+          // eslint-disable-next-line no-console
           console.log(err);
-          this.get('notifications').error(`Error creating job: ${err.messsage}`);
+          this.notifications.error(`Error creating job: ${err.messsage}`);
         });
       }
     }

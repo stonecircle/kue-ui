@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import { equal } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
     tagName: 'span',
     value: null,
-    up: Ember.computed.equal('value', 'asc'),
+    up: equal('value', 'asc'),
 
     click() {
-        this.sendAction('action');
+      // eslint-disable-next-line ember/closure-actions
+      this.sendAction('action');
     }
 });
