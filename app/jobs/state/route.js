@@ -5,7 +5,8 @@ export default Route.extend({
   jobs: service(),
     queryParams: {
         page: { refreshModel: true },
-        order: { refreshModel: true }
+        order: { refreshModel: true },
+        forceUpdate: { refreshModel: true },
     },
 
     model(params) {

@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  queryParams: ['state', 'page', 'order', 'size'],
+  queryParams: ['state', 'page', 'order', 'size', 'forceUpdate'],
 
   state: 'active',
   page: 1,
@@ -39,7 +39,8 @@ export default Controller.extend({
     },
     refresh() {
       this.transitionToRoute('jobs.type', { queryParams: {
-        page: this.page + 1
+        page: this.page,
+        forceUpdate: Date.now(),
       }});
     }
   }

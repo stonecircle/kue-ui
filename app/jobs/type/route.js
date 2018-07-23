@@ -8,6 +8,7 @@ export default Route.extend({
     sort: { refreshModel: true },
     state: { refreshModel: true },
     size: { refreshModel: true },
+    forceUpdate: { refreshModel: true },
   },
 
   model(params) {
