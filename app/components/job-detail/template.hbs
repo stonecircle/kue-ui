@@ -9,16 +9,60 @@
 
         <button class="btn-more" {{action "goToJob" job}}>More</button>
     </div>
-    <div class="console">
-        <pre>{{json-pretty data=job}}</pre>
-    </div>
-    {{#if job.error}}
-    <div class="error">
-        <div class="title">Error</div>
-        <div class="error-output">
-            {{format-error job.error}}
+    {{#if jobLog.content}}
+      {{#paper-card}}
+        {{#paper-toolbar}}
+          {{#paper-toolbar-tools}}
+            <h2>Log</h2>
+            <span class="flex"></span>
+            {{#paper-button onClick=(toggle "showLog" this)}}
+              {{paper-icon icon="code"}}
+            {{/paper-button}}
+          {{/paper-toolbar-tools}}
+        {{/paper-toolbar}}
+        {{#paper-content class=(if showLog 'zero-max-height animate-max-height' 'eight-max-height animate-max-height' )}}
+          <div class="card-body">
+            {{#each jobLog.content as |logLine|}}
+              {{logLine}} <br>
+            {{/each}}
+          </div>
+        {{/paper-content}}
+      {{/paper-card}}
+    {{/if}}
+    {{#paper-card}}
+      {{#paper-toolbar}}
+        {{#paper-toolbar-tools}}
+          <h2>Job Data</h2>
+          <span class="flex"></span>
+          {{#paper-button onClick=(toggle "showData" this)}}
+            {{paper-icon icon="code"}}
+          {{/paper-button}}
+        {{/paper-toolbar-tools}}
+      {{/paper-toolbar}}
+      {{#paper-content class=(if showData 'zero-max-height animate-max-height' 'eight-max-height animate-max-height' )}}
+        <div class="card-body">
+          <pre>{{json-pretty data=job}}</pre>
         </div>
-    </div>
+      {{/paper-content}}
+    {{/paper-card}}
+
+    {{#if job.error}}
+      {{#paper-card}}
+        {{#paper-toolbar}}
+          {{#paper-toolbar-tools}}
+            <h2>Error</h2>
+            <span class="flex"></span>
+            {{#paper-button onClick=(toggle "showError" this)}}
+              {{paper-icon icon="code"}}
+            {{/paper-button}}
+          {{/paper-toolbar-tools}}
+        {{/paper-toolbar}}
+        {{#paper-content class=(if showError 'zero-max-height animate-max-height' 'eight-max-height animate-max-height' )}}
+          <div class="card-body error-output">
+              {{format-error job.error}}
+          </div>
+        {{/paper-content}}
+      {{/paper-card}}
     {{/if}}
     <button class="btn-remove" {{action "removeJob" job}}>Delete</button>
 </div>

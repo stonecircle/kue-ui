@@ -7,3 +7,27 @@
 .new-job-dialog {
   min-width: 40%;
 }
+
+.card-body {
+  padding: 10px 16px;
+}
+
+.error-output {
+  font-family: monospace;
+  white-space: pre-wrap;
+  padding: 10px;
+  font-size: 12px;
+  color: red;
+}
+
+.animate-max-height {
+  transition: max-height 1s;
+}
+
+.zero-max-height {
+  max-height: 0;
+}
+
+.eight-max-height {
+  max-height: 800px;
+}

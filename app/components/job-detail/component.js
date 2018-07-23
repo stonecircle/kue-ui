@@ -1,9 +1,10 @@
 import { isEmpty } from '@ember/utils';
-import { observer } from '@ember/object';
+import { observer, computed } from '@ember/object';
 import { on } from '@ember/object/evented';
 import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
+import DS from 'ember-data';
 
 export default Component.extend({
     selections: alias('jobs.STATES'),
@@ -12,6 +13,12 @@ export default Component.extend({
     setup: on('init', function() {
         this.set('job.selected', this.get('job.state'));
     }).observes('job.id'),
+
+  jobLog: computed('job.id', function() {
+    return DS.PromiseObject.create({
+      promise: this.get('jobs').getLog(this.get('job')),
+    });
+  }),
 
     selectedStateDidChange: observer('job.selected', function() {
         if (isEmpty(this.get('job.state'))) {

@@ -6,7 +6,7 @@ import { get } from '@ember/object';
 import request from 'ember-ajax/request';
 
 import config from '../config/environment';
-import Job from '../models/job-non-model';
+import Job from '../classes/job-non-model';
 
 export default Service.extend({
 
@@ -142,6 +142,13 @@ export default Service.extend({
       url: 'job',
       data: jobBody,
       contentType: 'application/json'
+    });
+  },
+
+  getLog(job) {
+    return this.request({
+      method: 'GET',
+      url: `job/${job.id}/log`,
     });
   }
 });
