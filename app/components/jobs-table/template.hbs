@@ -17,8 +17,8 @@
     containerSelector="body"
     estimateHeight=400
      as |job|}}
-     <tr class="table-row job {{if job.checked 'active'}}" style="width: 60px">
-       <td class="col">
+     <tr class="table-row job {{if job.checked 'active'}}">
+       <td class="col" style="width: 60px">
          {{paper-checkbox value=job.checked onChange=(action (toggle 'checked' job))}}
        </td>
        <td class="col" {{action "checkOne" job}}>{{job.id}}</td>
