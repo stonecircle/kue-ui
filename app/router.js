@@ -15,6 +15,9 @@ Router.map(function() {
       this.route('show', { path: ":id" });
       this.route('new', { path: "/new" });
   });
+  this.route('history', function() {
+    this.route('detail', {path: ":timestamp"});
+  });
   this.route('login');
 });
 
