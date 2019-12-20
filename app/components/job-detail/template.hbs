@@ -6,8 +6,8 @@
             {{#x-option value=selection}}{{selection}}{{/x-option}}
           {{/each}}
         {{/x-select}}
-
-        <button class="btn-more" {{action "goToJob" job}}>More</button>
+        <button {{action "clone" job}}>Clone</button>
+        <a clase="button" href="{{rootURL}}/kue/jobs/{{job.id}}" target="_blank" >More info</a>
     </div>
     {{#if jobLog.content}}
       {{#paper-card}}

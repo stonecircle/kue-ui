@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { later } from '@ember/runloop';
 
-const allowedStates = ['failed', 'inactive'];
+const allowedStates = ['failed', 'inactive', 'delete'];
 
 export default Component.extend({
   jobs: service(),
@@ -17,7 +17,12 @@ export default Component.extend({
       let numberOfJobs = 0;
       let promises = this.selectedJobs.map((job) => {
         numberOfJobs ++;
-        this.jobs.updateState(job.id, newState)
+        if(newState === 'delete'){
+          this.jobs.removeById(job.id);
+        }else{
+          this.jobs.updateState(job.id, newState)
+        }
+       
       });
 
       Promise.all(promises).then(() => {

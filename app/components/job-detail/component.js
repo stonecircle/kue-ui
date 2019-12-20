@@ -42,6 +42,9 @@ export default Component.extend({
       //TODO: use closure actions
       // eslint-disable-next-line ember/closure-actions
       this.sendAction('removeAction', job);
+    },
+    clone(job){
+      this.jobs.clone(job)
     }
   }
 });

@@ -1,7 +1,7 @@
 {{notification-container}}
 <div class="container">
-  <div class="menu">
-    <div class="logo">{{#link-to "jobs.index"}} kue {{/link-to}}</div>
+  <div class="menu" style="width: 350px!important;">
+    <div class="logo">{{#link-to "jobs.index"}} Shippify Kue <span class="small-letter">v1.0</span>{{/link-to}}</div>
     <div class="input-search">
       {{input value=jobId placeholder="Find Job By Id" class="input" enter=(transition-to 'jobs.show' jobId)}}
     </div>

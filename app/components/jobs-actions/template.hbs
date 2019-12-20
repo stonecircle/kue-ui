@@ -6,6 +6,7 @@
       {{#if (gt selectedJobs.length 0)}}
         {{#paper-button raised=true onClick=(action 'updateSelected' 'failed')}} Cancel Selected Jobs {{/paper-button}}
         {{#paper-button raised=true onClick=(action 'updateSelected' 'inactive')}} Restart Selected Jobs {{/paper-button}}
+         {{#paper-button raised=true onClick=(action 'updateSelected' 'delete')}} Delete Selected Jobs {{/paper-button}}
       {{/if}}
     </div>
 </div>

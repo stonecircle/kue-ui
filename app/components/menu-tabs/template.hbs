@@ -1,13 +1,15 @@
-<div class="menu-list">
-  {{#each jobStates as |s|}}
-    {{#link-to 'jobs.state' s.state class="item"}}
-      {{s.state}} <span class="item-count">{{s.count}}</span>
-    {{/link-to}}
-  {{/each}}
-  {{#each items as |item|}}
+<div class="menu-list" style="width: 350px!important;">
+  <div class="main-menu">
+    {{#each jobStates as |s|}}
+      {{#link-to 'jobs.state' s.state class="item"}}
+        {{s.state}} <span class="item-count">{{s.count}}</span>
+      {{/link-to}}
+    {{/each}}
+  </div>
+    {{#each items as |item|}}
 
     <a {{action "goToItem" item}} class="item {{if item.active 'active'}}">
-      {{item.type}} <span class="item-count">{{item.count}}</span>
+      <span>{{item.type}}</span> <span class="item-count">{{item.count}}</span>
     </a>
       {{#each item.subItems as |subItem|}}
          <a {{action "goToItem" subItem}} class="sub-item {{if subItem.active 'active'}} {{if subItem.hide 'hide'}}">

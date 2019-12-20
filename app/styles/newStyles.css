@@ -31,3 +31,14 @@
 .eight-max-height {
   max-height: 800px;
 }
+.small-letter{
+  font-size: 70%;
+}
+.main-menu{
+  border: grey 3px solid;
+  margin-bottom: 15px;
+}
+.item-count-stats{  
+  float: right; border-radius: 1px; text-align: right; height: 23px; line-height: 23px; padding: 0 7px; margin-top: 7px; color:white;
+}
+

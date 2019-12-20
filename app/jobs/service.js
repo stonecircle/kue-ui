@@ -4,6 +4,7 @@ import { A, isArray } from '@ember/array';
 import Service, { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 import request from 'ember-ajax/request';
+import { later } from '@ember/runloop';
 
 import config from '../config/environment';
 import Job from '../classes/job-non-model';
@@ -106,7 +107,28 @@ export default Service.extend({
         this.notifications.error(`Job state update error ${err.message}`);
       });
   },
+  clone(job) {
+    return this.request({
+      method: 'POST',
+      url: 'job',
+      data: {
+        type: job.type,
+        data: job.data,
+        options: job.options
+      },
+      contentType: 'application/json'
+    })
+    .then((result) => {
+      this.notifications.success(`Job ${result.id} created successfully `, {
+        autoClear: true,
+      });
 
+      later(this, () => this.refresh(), 300);
+    })
+    .catch((err) => {
+      this.notifications.error(`Job clone error ${err.message}`);
+    });
+  },
   findOne(opts={}) {
       return this.request({
           method: 'GET',
@@ -122,6 +144,17 @@ export default Service.extend({
           method: 'GET',
           url: `job/types/`
       });
+  },
+
+  removeById(id) {
+    return this.request({
+      method: 'DELETE',
+      url: `job/${id}/`
+    })
+    .catch((err) => {
+      this.notifications.error(`Error removing Job: ${err.message}`);
+      throw err;
+    });
   },
 
   remove(job) {
